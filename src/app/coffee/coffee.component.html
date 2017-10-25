@@ -1,0 +1,42 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav class="example-sidenav">
+    <mat-toolbar color="primary">
+      Kafeak
+    </mat-toolbar>
+    <mat-list>
+      <mat-list-item>
+        <a href="#">
+          <mat-icon matListIcon>people</mat-icon>
+          Kafezaleak
+        </a>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.open()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Kafeak</span>
+    <span class="flex"></span>
+    <button mat-icon-button>
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </mat-toolbar>
+  
+  <mat-card class="card-95">
+    <mat-card-subtitle>Kafezaleak</mat-card-subtitle>
+    <mat-list>
+      <mat-list-item>
+        <div class="col col-50">&nbsp;</div>
+        <div class="col col-25 center">
+          <a class="sort-field" href="#" (click)="changeOrder('percentage',$event)">Ehunekoa<mat-icon>keyboard_arrow_down</mat-icon></a>
+        </div>
+        <div class="col col-25 center">
+          <a class="sort-field" href="#" (click)="changeOrder('special',$event)">Ostiralak<mat-icon>keyboard_arrow_down</mat-icon></a>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+
+</mat-sidenav-container>
