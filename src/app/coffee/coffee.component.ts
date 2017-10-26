@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'coffee',
-  templateUrl: './coffee.component.html',
-  styleUrls: ['./coffee.component.css']
+  templateUrl: './partials/coffee.component.html',
+  styleUrls: ['./css/coffee.component.css']
 })
 export class CoffeeComponent implements OnInit {
 
