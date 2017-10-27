@@ -1,1 +1,15 @@
-<div [innerHTML]="content"></div>
+<div class="calendar-all">
+  <div class="calendar-header">
+    <a href="#" class="calendar-previous">&lt;</a>
+    {{ currentMonth }}  {{ currentYear }}
+    <a href="#" class="calendar-next">&gt;</a>
+  </div>
+  <div class="calendar-row">
+    <div *ngFor="let day of headerDays" class="calendar-header-day">{{ day }}</div>
+  </div>
+  <div class="calendar-table">
+    <div *ngFor="let row of rows" class="calendar-row">
+	  <div *ngFor="let day of row" class="{{ day.class }}">{{ day.day }}</div>
+	</div>
+  </div>
+</div>

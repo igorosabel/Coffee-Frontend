@@ -19,13 +19,20 @@ export class CalendarComponent implements OnInit {
   selectDay = null;
   marked = {};
   
-  content = '';
-
-  constructor(public media:ObservableMedia) {
-    this.content = this.draw();
-  }
+  currentMonth = null;
+  currentYear = null;
+  headerDays = [];
+  rows = [];
+  
+  constructor(public media:ObservableMedia) {}
 
   ngOnInit() {}
+  
+  setDate(d){
+	  this.day = d.day;
+	  this.month = d.month;
+	  this.year = d.year;
+  }
   
   getDate(){
     return {d: this.day, m: this.month, y: this.year};
@@ -33,23 +40,17 @@ export class CalendarComponent implements OnInit {
   
   header(){
     const months = this.media.isActive('gt-xs') ? this.months : this.monthsShort;
-    const days   = this.media.isActive('gt-xs') ? this.days   : this.daysShort;
-    let header = `
-      <div class="calendar-header">
-        <a href="#" class="calendar-previous">&lt;</a>
-        ${months[this.month]} ${this.year}
-        <a href="#" class="calendar-next">&gt;</a>
-      </div>
-      <div class="calendar-row">`;
-    for (let i in days){
-      header += `<div class="calendar-header-day">${days[i]}</div>`;
-    }
-    header += `</div>`;
-    return  header;
+    const days = this.media.isActive('gt-xs') ? this.days   : this.daysShort;
+	
+	this.currentMonth = months[this.month];
+	this.currentYear = this.year;
+	this.headerDays = days;
   }
+  
   otherMonthDay(day){
-    return `<div class="calendar-day-other">${day}</div>`;
+    return {class:'calendar-day-other', day: day};
   }
+  
   currentMonthDay(day){
     const now = new Date();
     let today = (this.year===now.getFullYear() && this.month===now.getMonth() && this.day===day) ? ' calendar-today' : '';
@@ -58,8 +59,9 @@ export class CalendarComponent implements OnInit {
     if (this.marked[this.year] && this.marked[this.year][this.month+1] && this.marked[this.year][this.month+1][day]){
       marked = ' ' + this.marked[this.year][this.month+1][day];
     }
-    return `<div class="calendar-day${today}${clickable}${marked}">${day}</div>`;
+    return {class:'calendar-day'+today+clickable+marked, day: day};
   }
+  
   draw(){
     // Obtengo el primer día del mes y el primer día de la semana
     const firstDay = new Date(this.year, this.month, 1);
@@ -69,56 +71,45 @@ export class CalendarComponent implements OnInit {
     const monthLength = new Date(this.year, this.month+1, 0).getDate();
     const previousMonthLength = new Date(this.year, this.month, 0).getDate();
 
-    let html = `<div class="calendar-all">`;
-
     // Cabecera del calendario
-    html += this.header();
+    this.header();
 
     // Contenido del calendario
-    html += `<div class="calendar-table">`;
-
     // Variables con valores por defecto para los días
     let day  = 1; // Día actual del mes
     let prev = 1; // Días del mes anterior
     let next = 1; // Días del mes siguiente
+	let nextMonth = false;
 
-    html += `<div class="calendar-row">`;
     // Bucle de semanas (filas)
     for (let i = 0; i < 9; i++){
+	  if (nextMonth){ continue; }
+	  let days = [];
+	  
       // Bucle días de la semana (celdas)
       for (let j = 1; j <= 7; j++){
         if (day <= monthLength && (i > 0 || j >= firstDayWeekday)){
           // Mes actual
-          html += this.currentMonthDay(day);
+          days.push( this.currentMonthDay(day) );
           day++;
         }
         else{
           if (day <= monthLength) {
             // Mes anterior
-            html += this.otherMonthDay( previousMonthLength - firstDayWeekday + prev + 1 );
+            days.push( this.otherMonthDay( previousMonthLength - firstDayWeekday + prev + 1 ) );
             prev++;
           }
           else{
             // Mes siguiente
-            html += this.otherMonthDay(next);
+            days.push( this.otherMonthDay(next) );
             next++;
+			nextMonth = true;
           }
         }
       }
-
-      // Paro de hacer filas si es el final del mes
-      if (day > monthLength) {
-        html += `</div>`;
-        break;
-      } else {
-        html += `</div><div class="calendar-row">`;
-      }
+	  
+	  this.rows.push(days);
     }
-    html += `
-      </div>
-    </div>`;
-
-    return html;
   }
 
 }
