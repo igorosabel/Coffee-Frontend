@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
@@ -7,6 +7,7 @@ import { ObservableMedia } from '@angular/flex-layout';
   styleUrls: ['./css/calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+  @Output() select = new EventEmitter();
 
   months = ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'];
   monthsShort = ['Urt','Ots','Mar','Api','Mai','Eka','Uzt','Abu','Ira','Urr','Aza','Abe'];
@@ -16,7 +17,7 @@ export class CalendarComponent implements OnInit {
   day = null;
   month = null;
   year = null;
-  selectDay = null;
+  events = [];
   marked = {};
   
   currentMonth = null;
@@ -28,6 +29,10 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {}
   
+  selectDay(d){
+    this.select.emit({day: d.day, month: this.month+1, year: this.year});
+  }
+  
   setDate(d){
 	  this.day = d.day;
 	  this.month = d.month;
@@ -38,13 +43,18 @@ export class CalendarComponent implements OnInit {
     return {d: this.day, m: this.month, y: this.year};
   }
   
+  setEvents(events){
+    this.events = events;
+    this.events.forEach(element => this.marked[element.d] = element);
+  }
+  
   header(){
     const months = this.media.isActive('gt-xs') ? this.months : this.monthsShort;
     const days = this.media.isActive('gt-xs') ? this.days   : this.daysShort;
 	
-	this.currentMonth = months[this.month];
-	this.currentYear = this.year;
-	this.headerDays = days;
+    this.currentMonth = months[this.month];
+    this.currentYear = this.year;
+    this.headerDays = days;
   }
   
   otherMonthDay(day){
@@ -54,12 +64,11 @@ export class CalendarComponent implements OnInit {
   currentMonthDay(day){
     const now = new Date();
     let today = (this.year===now.getFullYear() && this.month===now.getMonth() && this.day===day) ? ' calendar-today' : '';
-    let clickable = (this.selectDay===null) ? '' : ' calendar-clickable';
     let marked = '';
-    if (this.marked[this.year] && this.marked[this.year][this.month+1] && this.marked[this.year][this.month+1][day]){
-      marked = ' ' + this.marked[this.year][this.month+1][day];
+    if (this.marked[day]){
+      marked = ' person_' + this.marked[day].id_person;
     }
-    return {class:'calendar-day'+today+clickable+marked, day: day};
+    return {class:'calendar-day calendar-clickable'+today+marked, day: day};
   }
   
   draw(){

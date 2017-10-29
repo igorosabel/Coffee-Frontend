@@ -1,3 +1,5 @@
+<colors #colors></colors>
+
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav class="example-sidenav">
     <mat-toolbar color="primary">
@@ -5,7 +7,7 @@
     </mat-toolbar>
     <mat-list>
       <mat-list-item>
-        <a href="#">
+        <a href="/people">
           <mat-icon matListIcon>people</mat-icon>
           Kafezaleak
         </a>
@@ -24,21 +26,30 @@
     </button>
   </mat-toolbar>
   
-  <calendar #calendar></calendar>
+  <calendar #calendar (select)="selectDay($event)"></calendar>
   
   <mat-card class="card-95">
     <mat-card-subtitle>Kafezaleak</mat-card-subtitle>
-    <mat-list>
-      <mat-list-item>
-        <div class="col col-50">&nbsp;</div>
-        <div class="col col-25 center">
-          <a class="sort-field" href="#" (click)="changeOrder('percentage',$event)">Ehunekoa<mat-icon>keyboard_arrow_down</mat-icon></a>
-        </div>
-        <div class="col col-25 center">
-          <a class="sort-field" href="#" (click)="changeOrder('special',$event)">Ostiralak<mat-icon>keyboard_arrow_down</mat-icon></a>
-        </div>
+    <div>
+      <div class="col col-50">&nbsp;</div>
+      <div class="col col-25 center">
+        <a class="sort-field" href="#" (click)="changeOrder('percentage',$event)">Ehunekoa<mat-icon>keyboard_arrow_down</mat-icon></a>
+      </div>
+      <div class="col col-25 center">
+        <a class="sort-field" href="#" (click)="changeOrder('special',$event)">Ostiralak<mat-icon>keyboard_arrow_down</mat-icon></a>
+      </div>
+    </div>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let person of peopleList">
+        <a href="#">
+          <div class="col col-50">
+            <div class="person_{{ person.id }}">{{ person.name | urldecode }}</div>
+          </div>
+          <div class="col col-25 center">{{ person | percentageTotal }}</div>
+          <div class="col col-25 center">{{ person | percentageFridays }}</div>
+        </a>
       </mat-list-item>
-    </mat-list>
+    </mat-nav-list>
   </mat-card>
 
 </mat-sidenav-container>

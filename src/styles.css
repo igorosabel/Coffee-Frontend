@@ -1,5 +1,9 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+*{
+  box-sizing: border-box;
+}
+
 html, body, material-app, mat-sidenav-container{
   margin: 0;
   padding: 0;
@@ -13,11 +17,12 @@ html, body, material-app, mat-sidenav-container{
 
 .card-95{
   width: 95%;
-  margin: 0 auto;
+  margin: 16px auto;
 }
 
 .col{
   display: inline-block;
+  height: 100%;
 }
 
 .col-25{
@@ -25,7 +30,7 @@ html, body, material-app, mat-sidenav-container{
 }
 
 .col-50{
-  width: 50%;
+  width: 49%;
 }
 
 .center{
