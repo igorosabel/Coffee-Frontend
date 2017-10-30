@@ -11,4 +11,15 @@
 
 <mat-card class="card-95">
   <h1 *ngIf="special" class="center">Ostirala!</h1>
+  <div class="row">
+    <span>Joan da</span>
+    <span class="flex"></span>
+    <span>Ordaindu du?</span>
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let person of peopleList">
+      <mat-checkbox></mat-checkbox>
+      {{ person.name | urldecode }}
+    </mat-list-item>
+  </mat-list>
 </mat-card>

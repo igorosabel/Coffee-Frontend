@@ -10,17 +10,27 @@ import { CalendarDay } from '../../interfaces/interfaces';
 })
 export class DayComponent implements OnInit {
 	
-  day = {};
+  day: CalendarDay = {day: 0, month: 0, year: 0};
   special = false;
-  people = [];
+  people = {};
+  peopleList = [];
 
-  constructor(private dss: DataShareService, private router: Router) {}
+  constructor(private dss: DataShareService, private router: Router) {
+    this.dss.setSaveLocalStorage(true);
+  }
 
   ngOnInit() {
-    this.day = <CalendarDay>this.dss.getGlobal('day');
-	const date = new Date(this.day.year, this.day.month-1, this.day.day);
-	this.special = (date.getDay()===5);
-    console.log(this.day);
+    this.day = <CalendarDay> this.dss.getGlobal('day');
+    const date = new Date(this.day.year, this.day.month-1, this.day.day);
+    this.special = (date.getDay()===5);
+    this.people = this.dss.getGlobal('people');
+    this.loadPeopleList();
+  }
+  
+  loadPeopleList(){
+    for(let person in this.people){
+      this.peopleList.push( this.people[person] );
+    }
   }
   
   back(){
@@ -31,5 +41,4 @@ export class DayComponent implements OnInit {
   save(){
 	  
   }
-
 }
