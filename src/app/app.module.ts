@@ -7,13 +7,14 @@ import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatLis
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CoffeeComponent } from './coffee/coffee.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { DetailComponent } from './detail/detail.component';
-import { PeopleComponent } from './people/people.component';
-import { ColorsComponent } from './colors/colors.component';
+import { CoffeeComponent } from './components/coffee/coffee.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DayComponent } from './components/day/day.component';
+import { PeopleComponent } from './components/people/people.component';
+import { ColorsComponent } from './components/colors/colors.component';
 
-import { ApiService } from './coffee/services/api.service';
+import { ApiService } from './services/api.service';
+import { DataShareService } from './services/data-share.service';
 
 import { UrldecodePipe } from './pipes/urldecode.pipe';
 import { PercentageTotalPipe } from './pipes/percentage-total.pipe';
@@ -21,7 +22,7 @@ import { PercentageFridaysPipe } from './pipes/percentage-fridays.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: CoffeeComponent },
-  { path: 'detail', component: DetailComponent },
+  { path: 'day', component: DayComponent },
   { path: 'people', component: PeopleComponent }
 ];
 
@@ -33,7 +34,7 @@ const appRoutes: Routes = [
     UrldecodePipe,
     PercentageTotalPipe,
     PercentageFridaysPipe,
-    DetailComponent,
+    DayComponent,
     PeopleComponent,
     ColorsComponent
   ],
@@ -50,7 +51,7 @@ const appRoutes: Routes = [
     MatSidenavModule,
     FlexLayoutModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, DataShareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

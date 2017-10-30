@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PeopleResult } from '../coffee/services/api.service';
+import { PeopleResult } from '../services/api.service';
 
 @Pipe({
   name: 'percentageFridays'

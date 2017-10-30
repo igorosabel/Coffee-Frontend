@@ -1,7 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ColorsComponent } from '../colors/colors.component';
 import { CalendarComponent } from '../calendar/calendar.component';
-import { ApiService } from './services/api.service';
+import { ApiService } from '../../services/api.service';
+import { DataShareService } from '../../services/data-share.service';
 
 @Component({
   selector: 'coffee',
@@ -21,7 +23,8 @@ export class CoffeeComponent implements OnInit {
   people = {};
   peopleList = [];
 
-  constructor(private as: ApiService) {
+  constructor(private as: ApiService, private dss: DataShareService, private router: Router) {
+    this.dss.setSaveLocalStorage(true);
     const d = new Date();
     this.data = {
       day: d.getDate(),
@@ -50,8 +53,20 @@ export class CoffeeComponent implements OnInit {
     this.colors.loadColors(this.peopleList);
   }
   
+  newDay(){
+    const d = new Date();
+    const day = {
+		day: d.getDate(),
+		month: d.getMonth()+1,
+		year: d.getFullYear()
+	};
+	this.dss.setGlobal('day', day);
+	this.router.navigate(['/day']);
+  }
+  
   selectDay(ev){
-    console.log(ev);
+	this.dss.setGlobal('day', ev);
+	this.router.navigate(['/day']);
   }
   
   changeOrder(mode, ev){
