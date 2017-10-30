@@ -19,6 +19,7 @@ import { DataShareService } from './services/data-share.service';
 import { UrldecodePipe } from './pipes/urldecode.pipe';
 import { PercentageTotalPipe } from './pipes/percentage-total.pipe';
 import { PercentageFridaysPipe } from './pipes/percentage-fridays.pipe';
+import { FormatNumPipe } from './pipes/format-num.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: CoffeeComponent },
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     PercentageFridaysPipe,
     DayComponent,
     PeopleComponent,
-    ColorsComponent
+    ColorsComponent,
+    FormatNumPipe
   ],
   imports: [
     BrowserModule,

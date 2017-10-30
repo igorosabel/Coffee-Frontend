@@ -4,6 +4,7 @@ import { ColorsComponent } from '../colors/colors.component';
 import { CalendarComponent } from '../calendar/calendar.component';
 import { ApiService } from '../../services/api.service';
 import { DataShareService } from '../../services/data-share.service';
+import { CalendarDay } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'coffee',
@@ -25,20 +26,38 @@ export class CoffeeComponent implements OnInit {
 
   constructor(private as: ApiService, private dss: DataShareService, private router: Router) {
     this.dss.setSaveLocalStorage(true);
+  }
+
+  ngOnInit() {
     const d = new Date();
     this.data = {
       day: d.getDate(),
       month: d.getMonth(),
       year: d.getFullYear()
     };
-	  this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
-  	  this.events = result.list;
-  	  this.startCalendar();
-    });
-	  this.as.getPeople().subscribe(result => { this.people = result.people; this.loadPeopleList(); });
+	if (this.dss.getGlobal('events') === null){
+      this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
+  	    this.events = result.list;
+	    this.dss.setGlobal('events', this.events);
+  	    this.startCalendar();
+      });
+	}
+	else{
+       this.events = this.dss.getGlobal('events');
+	   this.startCalendar();
+	}
+	if (this.dss.getGlobal('people') === null){
+      this.as.getPeople().subscribe(result => {
+		  this.people = result.people;
+		  this.dss.setGlobal('people', this.people);
+		  this.loadPeopleList();
+      });
+    }
+	else{
+      this.people = this.dss.getGlobal('people');
+      this.loadPeopleList();
+	}
   }
-
-  ngOnInit() {}
   
   startCalendar(){
     this.calendar.setDate(this.data);
@@ -55,7 +74,7 @@ export class CoffeeComponent implements OnInit {
   
   newDay(){
     const d = new Date();
-    const day = {
+    const day = <CalendarDay>{
 		day: d.getDate(),
 		month: d.getMonth()+1,
 		year: d.getFullYear()

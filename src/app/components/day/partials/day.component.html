@@ -1,3 +1,14 @@
-<p>
-  detail works!
-</p>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="back()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>{{ day.year }}-{{ day.month | formatNum }}-{{ day.day | formatNum }}</span>
+  <span class="flex"></span>
+  <button mat-icon-button (click)="save()">
+    <mat-icon>check</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-card class="card-95">
+  <h1 *ngIf="special" class="center">Ostirala!</h1>
+</mat-card>

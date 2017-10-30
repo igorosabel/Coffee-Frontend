@@ -50,4 +50,20 @@ export class DataShareService {
 	  return this.globals[key];
     }
   }
+  
+  removeGlobal(key:string){
+    if (this.globals[key]){
+		delete this.globals[key];
+	}
+	if (this.saveLocalStorage){
+      localStorage.removeItem(key);
+    }
+  }
+  
+  resetGlobals(){
+    this.globals = {};
+	if (this.saveLocalStorage){
+      localStorage.clear();
+    }
+  }
 }
