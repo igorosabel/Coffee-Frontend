@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 import { DataShareService } from '../../services/data-share.service';
+import { DialogService } from '../../services/dialog.service';
 import { CalendarDay } from '../../interfaces/interfaces';
 
 @Component({
@@ -14,8 +16,9 @@ export class DayComponent implements OnInit {
   special = false;
   people = {};
   peopleList = [];
+  payed = null;
 
-  constructor(private dss: DataShareService, private router: Router) {
+  constructor(private as: ApiService, private dss: DataShareService, private dialog: DialogService, private router: Router) {
     this.dss.setSaveLocalStorage(true);
   }
 
@@ -23,12 +26,22 @@ export class DayComponent implements OnInit {
     this.day = <CalendarDay> this.dss.getGlobal('day');
     const date = new Date(this.day.year, this.day.month-1, this.day.day);
     this.special = (date.getDay()===5);
-    this.people = this.dss.getGlobal('people');
-    this.loadPeopleList();
+	if (this.dss.getGlobal('people') === null){
+      this.as.getPeople().subscribe(result => {
+		  this.people = result.people;
+		  this.dss.setGlobal('people', this.people);
+		  this.loadPeopleList();
+      });
+    }
+	else{
+      this.people = this.dss.getGlobal('people');
+      this.loadPeopleList();
+	}
   }
   
   loadPeopleList(){
     for(let person in this.people){
+      this.people[person].didGo = false;
       this.peopleList.push( this.people[person] );
     }
   }
@@ -39,6 +52,10 @@ export class DayComponent implements OnInit {
   }
   
   save(){
-	  
+	  console.log(this.peopleList);
+	  console.log(this.payed);
+	  this.dialog
+      .confirm('Izenburua', 'Mezua')
+      .subscribe(res => console.log(res));
   }
 }

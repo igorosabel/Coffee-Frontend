@@ -16,10 +16,13 @@
     <span class="flex"></span>
     <span>Ordaindu du?</span>
   </div>
-  <mat-list>
-    <mat-list-item *ngFor="let person of peopleList">
-      <mat-checkbox></mat-checkbox>
-      {{ person.name | urldecode }}
-    </mat-list-item>
-  </mat-list>
+  <mat-radio-group [(ngModel)]="payed">
+    <mat-list>
+      <mat-list-item *ngFor="let person of peopleList">
+        <mat-checkbox>{{ person.name | urldecode }}</mat-checkbox>
+        <span class="flex"></span>
+        <mat-radio-button [value]="person.id"></mat-radio-button>
+      </mat-list-item>
+    </mat-list>
+  </mat-radio-group>
 </mat-card>

@@ -2,8 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatListModule, MatSidenavModule } from '@angular/material';
+import {
+	MatToolbarModule,
+	MatButtonModule,
+	MatIconModule,
+	MatCardModule,
+	MatListModule,
+	MatSidenavModule,
+	MatCheckboxModule,
+    MatRadioModule,
+	MatDialogModule
+} from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -15,6 +26,9 @@ import { ColorsComponent } from './components/colors/colors.component';
 
 import { ApiService } from './services/api.service';
 import { DataShareService } from './services/data-share.service';
+import { DialogService } from './services/dialog.service';
+import { ConfirmDialogComponent } from './services/dialogs/confirm-dialog.component';
+import { AlertDialogComponent } from './services/dialogs/alert-dialog.component';
 
 import { UrldecodePipe } from './pipes/urldecode.pipe';
 import { PercentageTotalPipe } from './pipes/percentage-total.pipe';
@@ -32,18 +46,22 @@ const appRoutes: Routes = [
     AppComponent,
     CoffeeComponent,
     CalendarComponent,
+	DayComponent,
+    PeopleComponent,
+    ColorsComponent,
     UrldecodePipe,
     PercentageTotalPipe,
     PercentageFridaysPipe,
-    DayComponent,
-    PeopleComponent,
-    ColorsComponent,
-    FormatNumPipe
+    FormatNumPipe,
+	ConfirmDialogComponent,
+	AlertDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+	FormsModule,
+	FlexLayoutModule,
     RouterModule.forRoot(appRoutes),
     MatToolbarModule,
     MatButtonModule,
@@ -51,9 +69,12 @@ const appRoutes: Routes = [
     MatCardModule,
     MatListModule,
     MatSidenavModule,
-    FlexLayoutModule
+	MatCheckboxModule,
+	MatRadioModule,
+	MatDialogModule
   ],
-  providers: [ApiService, DataShareService],
+  entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
+  providers: [ApiService, DataShareService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
