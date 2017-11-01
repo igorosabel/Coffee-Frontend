@@ -3,12 +3,14 @@ import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-alert-dialog',
-  templateUrl: './alert-dialog.component.html'
+  templateUrl: './alert-dialog.component.html',
+  styleUrls: ['./dialog.component.css']
 })
 export class AlertDialogComponent {
 
     public title: string;
-    public message: string;
+    public content: string;
+    public ok: string;
 
     constructor(public dialogRef: MatDialogRef<AlertDialogComponent>) {}
 }

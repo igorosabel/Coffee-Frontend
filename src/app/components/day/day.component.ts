@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { DataShareService } from '../../services/data-share.service';
 import { DialogService } from '../../services/dialog.service';
 import { CalendarDay } from '../../interfaces/interfaces';
+import { DialogOptions } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'detail',
@@ -13,10 +14,12 @@ import { CalendarDay } from '../../interfaces/interfaces';
 export class DayComponent implements OnInit {
 	
   day: CalendarDay = {day: 0, month: 0, year: 0};
+  idCoffee = 0;
   special = false;
   people = {};
   peopleList = [];
   payed = null;
+  sending = false;
 
   constructor(private as: ApiService, private dss: DataShareService, private dialog: DialogService, private router: Router) {
     this.dss.setSaveLocalStorage(true);
@@ -26,17 +29,17 @@ export class DayComponent implements OnInit {
     this.day = <CalendarDay> this.dss.getGlobal('day');
     const date = new Date(this.day.year, this.day.month-1, this.day.day);
     this.special = (date.getDay()===5);
-	if (this.dss.getGlobal('people') === null){
+	  if (this.dss.getGlobal('people') === null){
       this.as.getPeople().subscribe(result => {
-		  this.people = result.people;
-		  this.dss.setGlobal('people', this.people);
-		  this.loadPeopleList();
+		    this.people = result.people;
+		    this.dss.setGlobal('people', this.people);
+		    this.loadPeopleList();
       });
     }
-	else{
+	  else{
       this.people = this.dss.getGlobal('people');
       this.loadPeopleList();
-	}
+	  }
   }
   
   loadPeopleList(){
@@ -52,10 +55,50 @@ export class DayComponent implements OnInit {
   }
   
   save(){
-	  console.log(this.peopleList);
-	  console.log(this.payed);
-	  this.dialog
-      .confirm('Izenburua', 'Mezua')
-      .subscribe(res => console.log(res));
+    debugger;
+    let ok = false;
+    for (let i in this.peopleList){
+      if (this.peopleList[i].didGo){
+        ok = true;
+        break;
+      }
+    }
+    if (!ok){
+      this.dialog.alert({title: 'Errorea', content: 'Ez da inor joan kafera?', ok: 'Ados'});
+      return false;
+    }
+    
+    if (this.payed===null){
+      this.dialog.alert({title: 'Errorea', content: 'Ez du inor ordaindu?', ok: 'Ados'});
+      return false;
+    }
+    
+    this.sending = true;
+    const saveObj = {
+      id: this.idCoffee,
+      d: this.day.day,
+      m: this.day.month,
+      y: this.day.year,
+      special: this.special,
+      id_pay: this.payed,
+      list: []
+    };
+    
+    for (let i in this.peopleList){
+      if (this.peopleList[i].didGo){
+        saveObj.list.push(this.peopleList[i].id);
+      }
+    }
+    
+    this.as.saveCoffee(saveObj).subscribe(result => {
+      debugger;
+      if (result.status==='ok'){
+        this.dss.removeGlobal('events');
+        this.router.navigate(['/']);
+      }
+      else{
+        this.dialog.alert({title: 'Errorea', content: 'Akats bat gertatu da datuak gordetzerakoan.', ok: 'Ados'});
+      }
+    });
   }
 }

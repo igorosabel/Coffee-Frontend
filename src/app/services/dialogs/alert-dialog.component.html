@@ -1,5 +1,8 @@
-<p>{{ title }}</p>
-<p>{{ message }}</p>
+<div class="dialog">
+  <div class="title">{{ title }}</div>
+  <div class="content">{{ content }}</div>
 
-<button type="button" mat-raised-button 
-    (click)="dialogRef.close(true)">OK</button>
+  <div class="actions">
+    <button type="button" mat-raised-button (click)="dialogRef.close(true)">{{ ok }}</button>
+  </div>
+</div>

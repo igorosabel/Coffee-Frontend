@@ -32,3 +32,24 @@ export interface CalendarDay {
 	month: number;
 	year: number;
 }
+
+export interface DialogOptions {
+  title: string;
+  content: string;
+  ok: string;
+  error?: string;
+}
+
+export interface CoffeeData {
+  id: number;
+  d: number;
+  m: number;
+  y: number;
+  special: boolean;
+  id_pay: number;
+  list: number[];
+}
+
+export interface SaveResult {
+  status: string;
+}

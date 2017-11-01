@@ -35,28 +35,38 @@ export class CoffeeComponent implements OnInit {
       month: d.getMonth(),
       year: d.getFullYear()
     };
-	if (this.dss.getGlobal('events') === null){
+    if (this.dss.getGlobal('data') === null){
+      this.dss.setGlobal('data', this.data);
+    }
+    else{
+      const checkData = this.dss.getGlobal('data');
+      if (this.data.day!==checkData.day || this.data.month!==checkData.month || this.data.year!==checkData.year){
+        this.dss.resetGlobals();
+        this.dss.setGlobal('data', this.data);
+      }
+    }
+    if (this.dss.getGlobal('events') === null){
       this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
   	    this.events = result.list;
 	    this.dss.setGlobal('events', this.events);
   	    this.startCalendar();
       });
-	}
-	else{
+	  }
+    else{
        this.events = this.dss.getGlobal('events');
 	   this.startCalendar();
-	}
-	if (this.dss.getGlobal('people') === null){
+	  }
+    if (this.dss.getGlobal('people') === null){
       this.as.getPeople().subscribe(result => {
 		  this.people = result.people;
 		  this.dss.setGlobal('people', this.people);
 		  this.loadPeopleList();
       });
     }
-	else{
+    else{
       this.people = this.dss.getGlobal('people');
       this.loadPeopleList();
-	}
+	  }
   }
   
   startCalendar(){

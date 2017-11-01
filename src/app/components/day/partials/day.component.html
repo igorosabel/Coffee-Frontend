@@ -4,9 +4,12 @@
   </button>
   <span>{{ day.year }}-{{ day.month | formatNum }}-{{ day.day | formatNum }}</span>
   <span class="flex"></span>
-  <button mat-icon-button (click)="save()">
+  <button *ngIf="!sending" mat-icon-button (click)="save()">
     <mat-icon>check</mat-icon>
   </button>
+  <span *ngIf="sending" class="saving-bg">
+    <img src="/assets/loading.svg" alt="Gordetzen...">
+  </span>
 </mat-toolbar>
 
 <mat-card class="card-95">
@@ -19,7 +22,7 @@
   <mat-radio-group [(ngModel)]="payed">
     <mat-list>
       <mat-list-item *ngFor="let person of peopleList">
-        <mat-checkbox>{{ person.name | urldecode }}</mat-checkbox>
+        <mat-checkbox [(ngModel)]="person.didGo">{{ person.name | urldecode }}</mat-checkbox>
         <span class="flex"></span>
         <mat-radio-button [value]="person.id"></mat-radio-button>
       </mat-list-item>
