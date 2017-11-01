@@ -8,6 +8,7 @@ import { ObservableMedia } from '@angular/flex-layout';
 })
 export class CalendarComponent implements OnInit {
   @Output() select = new EventEmitter();
+  @Output() change = new EventEmitter();
 
   months = ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'];
   monthsShort = ['Urt','Ots','Mar','Api','Mai','Eka','Uzt','Abu','Ira','Urr','Aza','Abe'];
@@ -40,12 +41,36 @@ export class CalendarComponent implements OnInit {
   }
   
   getDate(){
-    return {d: this.day, m: this.month, y: this.year};
+    return {day: this.day, month: this.month, year: this.year};
   }
   
   setEvents(events){
+    this.rows = [];
     this.events = events;
+    this.marked = {};
     this.events.forEach(element => this.marked[element.d] = element);
+  }
+  
+  previousMonth(ev){
+    ev.preventDefault();
+    this.month--;
+    if (this.month==-1){
+      this.month = 11;
+      this.year--;
+    }
+    this.setEvents([]);
+    this.change.emit(this.getDate());
+  }
+  
+  nextMonth(ev){
+    ev.preventDefault();
+    this.month++;
+    if (this.month==12){
+      this.month = 0;
+      this.year++;
+    }
+    this.setEvents([]);
+    this.change.emit(this.getDate());
   }
   
   header(){
@@ -88,7 +113,7 @@ export class CalendarComponent implements OnInit {
     let day  = 1; // Día actual del mes
     let prev = 1; // Días del mes anterior
     let next = 1; // Días del mes siguiente
-	let nextMonth = false;
+	  let nextMonth = false;
 
     // Bucle de semanas (filas)
     for (let i = 0; i < 9; i++){
@@ -112,13 +137,12 @@ export class CalendarComponent implements OnInit {
             // Mes siguiente
             days.push( this.otherMonthDay(next) );
             next++;
-			nextMonth = true;
+			      nextMonth = true;
           }
         }
       }
 	  
-	  this.rows.push(days);
+	    this.rows.push(days);
     }
   }
-
 }

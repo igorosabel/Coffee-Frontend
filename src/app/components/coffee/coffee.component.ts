@@ -48,13 +48,13 @@ export class CoffeeComponent implements OnInit {
     if (this.dss.getGlobal('events') === null){
       this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
   	    this.events = result.list;
-	    this.dss.setGlobal('events', this.events);
+	      this.dss.setGlobal('events', this.events);
   	    this.startCalendar();
       });
 	  }
     else{
        this.events = this.dss.getGlobal('events');
-	   this.startCalendar();
+       this.startCalendar();
 	  }
     if (this.dss.getGlobal('people') === null){
       this.as.getPeople().subscribe(result => {
@@ -85,17 +85,31 @@ export class CoffeeComponent implements OnInit {
   newDay(){
     const d = new Date();
     const day = <CalendarDay>{
-		day: d.getDate(),
-		month: d.getMonth()+1,
-		year: d.getFullYear()
-	};
-	this.dss.setGlobal('day', day);
-	this.router.navigate(['/day']);
+  		day: d.getDate(),
+  		month: d.getMonth()+1,
+  		year: d.getFullYear()
+  	};
+  	this.dss.setGlobal('day', day);
+  	this.router.navigate(['/day']);
   }
   
   selectDay(ev){
-	this.dss.setGlobal('day', ev);
-	this.router.navigate(['/day']);
+	  this.dss.setGlobal('day', ev);
+	  this.router.navigate(['/day']);
+  }
+  
+  changeMonth(ev){
+    this.dss.removeGlobal('data');
+    this.dss.removeGlobal('events');
+    
+    this.data = ev;
+    this.dss.setGlobal('data', this.data);
+    
+    this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
+	    this.events = result.list;
+      this.dss.setGlobal('events', this.events);
+	    this.startCalendar();
+    });
   }
   
   changeOrder(mode, ev){

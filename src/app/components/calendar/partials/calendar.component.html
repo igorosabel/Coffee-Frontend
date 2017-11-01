@@ -1,8 +1,8 @@
 <div class="calendar-all">
   <div class="calendar-header">
-    <a href="#" class="calendar-previous">&lt;</a>
+    <a href="#" class="calendar-previous" (click)="previousMonth($event)">&lt;</a>
     {{ currentMonth }}  {{ currentYear }}
-    <a href="#" class="calendar-next">&gt;</a>
+    <a href="#" class="calendar-next" (click)="nextMonth($event)">&gt;</a>
   </div>
   <div class="calendar-row">
     <div *ngFor="let day of headerDays" class="calendar-header-day">{{ day }}</div>

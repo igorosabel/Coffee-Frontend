@@ -55,7 +55,6 @@ export class DayComponent implements OnInit {
   }
   
   save(){
-    debugger;
     let ok = false;
     for (let i in this.peopleList){
       if (this.peopleList[i].didGo){
@@ -91,7 +90,6 @@ export class DayComponent implements OnInit {
     }
     
     this.as.saveCoffee(saveObj).subscribe(result => {
-      debugger;
       if (result.status==='ok'){
         this.dss.removeGlobal('events');
         this.router.navigate(['/']);

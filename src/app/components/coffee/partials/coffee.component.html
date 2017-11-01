@@ -26,7 +26,7 @@
     </button>
   </mat-toolbar>
   
-  <calendar #calendar (select)="selectDay($event)"></calendar>
+  <calendar #calendar (select)="selectDay($event)" (change)="changeMonth($event)"></calendar>
   
   <mat-card class="card-95">
     <mat-card-subtitle>Kafezaleak</mat-card-subtitle>
