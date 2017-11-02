@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,22 +46,22 @@ const appRoutes: Routes = [
     AppComponent,
     CoffeeComponent,
     CalendarComponent,
-	DayComponent,
+	  DayComponent,
     PeopleComponent,
     ColorsComponent,
     UrldecodePipe,
     PercentageTotalPipe,
     PercentageFridaysPipe,
     FormatNumPipe,
-	ConfirmDialogComponent,
-	AlertDialogComponent
+	  ConfirmDialogComponent,
+	  AlertDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
-	FormsModule,
-	FlexLayoutModule,
+    HttpClientModule,
+	  FormsModule,
+	  FlexLayoutModule,
     RouterModule.forRoot(appRoutes),
     MatToolbarModule,
     MatButtonModule,
@@ -69,9 +69,9 @@ const appRoutes: Routes = [
     MatCardModule,
     MatListModule,
     MatSidenavModule,
-	MatCheckboxModule,
-	MatRadioModule,
-	MatDialogModule
+	  MatCheckboxModule,
+	  MatRadioModule,
+	  MatDialogModule
   ],
   entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
   providers: [ApiService, DataShareService, DialogService],

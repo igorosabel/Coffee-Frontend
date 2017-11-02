@@ -1,4 +1,4 @@
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/Rx';
@@ -14,17 +14,17 @@ import {
 @Injectable()
 export class ApiService {
 
-  constructor(private http : Http){}
+  constructor(private http : HttpClient){}
 
   getMonth(month: number, year: number): Observable<MonthResult> {
-    return this.http.post('https://coffee.osumi.es/api/coffee/get-month', {month, year}).map((response:Response) => response.json());
+    return this.http.post<MonthResult>('https://coffee.osumi.es/api/coffee/get-month', {month, year});
   }
   
   getPeople(): Observable<PeopleListResult> {
-    return this.http.post('https://coffee.osumi.es/api/person/get-people', {}).map((response:Response) => response.json());
+    return this.http.post<PeopleListResult>('https://coffee.osumi.es/api/person/get-people', {});
   }
   
   saveCoffee(coffeData: CoffeeData): Observable<SaveResult> {
-    return this.http.post('https://coffee.osumi.es/api/coffee/save', coffeData).map((response:Response) => response.json());
+    return this.http.post<SaveResult>('https://coffee.osumi.es/api/coffee/save', coffeData);
   }
 }
