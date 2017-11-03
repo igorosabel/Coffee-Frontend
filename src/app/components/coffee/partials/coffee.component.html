@@ -5,14 +5,14 @@
     <mat-toolbar color="primary">
       Kafeak
     </mat-toolbar>
-    <mat-list>
+    <mat-nav-list>
       <mat-list-item>
-        <a href="/people">
+        <a routerLink="/people">
           <mat-icon matListIcon>people</mat-icon>
           Kafezaleak
         </a>
       </mat-list-item>
-    </mat-list>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-toolbar color="primary">
@@ -33,10 +33,10 @@
     <div>
       <div class="col col-50">&nbsp;</div>
       <div class="col col-25 center">
-        <a class="sort-field" href="#" (click)="changeOrder('percentage',$event)">Ehunekoa<mat-icon>keyboard_arrow_down</mat-icon></a>
+        <a class="sort-field" href="#" (click)="changeOrder('percentage',$event)">Ehunekoa<mat-icon *ngIf="sortField=='percentage'">keyboard_arrow_{{sortOrder}}</mat-icon></a>
       </div>
       <div class="col col-25 center">
-        <a class="sort-field" href="#" (click)="changeOrder('special',$event)">Ostiralak<mat-icon>keyboard_arrow_down</mat-icon></a>
+        <a class="sort-field" href="#" (click)="changeOrder('special',$event)">Ostiralak<mat-icon *ngIf="sortField=='special'">keyboard_arrow_{{sortOrder}}</mat-icon></a>
       </div>
     </div>
     <mat-nav-list>

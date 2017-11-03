@@ -23,6 +23,8 @@ export class CoffeeComponent implements OnInit {
   events = [];
   people = {};
   peopleList = [];
+  sortField = 'percentage';
+  sortOrder = 'down';
 
   constructor(private as: ApiService, private dss: DataShareService, private router: Router) {
     this.dss.setSaveLocalStorage(true);
@@ -112,8 +114,37 @@ export class CoffeeComponent implements OnInit {
     });
   }
   
+  listOrder(){
+    if (this.sortField=='percentage'){
+      if (this.sortOrder=='down'){
+        this.peopleList.sort(function(a, b) {
+          return (b.num_pay / b.num_coffee) - (a.num_pay / a.num_coffee);
+        });
+      }
+      if (this.sortOrder=='up'){
+        this.peopleList.sort(function(a, b) {
+          return (a.num_pay / a.num_coffee) - (b.num_pay / b.num_coffee);
+        });
+      }
+    }
+    if (this.sortField=='special'){
+      if (this.sortOrder=='down'){
+        this.peopleList.sort(function(a, b) {
+          return (b.num_special_pay / b.num_special) - (a.num_special_pay / a.num_special);
+        });
+      }
+      if (this.sortOrder=='up'){
+        this.peopleList.sort(function(a, b) {
+          return (a.num_special_pay / a.num_special) - (b.num_special_pay / b.num_special);
+        });
+      }
+    }
+  }
+  
   changeOrder(mode, ev){
     ev.preventDefault();
-    console.log(mode);
+    this.sortField = mode;
+    this.sortOrder = (this.sortOrder=='up') ? 'down' : 'up';
+    this.listOrder();
   }
 }

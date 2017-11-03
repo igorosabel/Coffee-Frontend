@@ -1,3 +1,21 @@
-<p>
-  people works!
-</p>
+<colors #colors></colors>
+
+<mat-toolbar color="primary">
+  <button mat-icon-button routerLink="/">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Kafezaleak</span>
+</mat-toolbar>
+
+<mat-card class="card-95">
+  <mat-nav-list>
+    <mat-list-item *ngFor="let person of peopleList">
+      <a href="#">
+        <div class="person_{{ person.id }}">{{ person.name | urldecode }}</div>
+      </a>
+    </mat-list-item>
+  </mat-nav-list>
+  <div class="row flex-end">
+    <button mat-button>GEHITU</button>
+  </div>
+</mat-card>
