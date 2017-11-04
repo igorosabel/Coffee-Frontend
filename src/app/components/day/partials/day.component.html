@@ -22,10 +22,16 @@
   <mat-radio-group [(ngModel)]="payed">
     <mat-list>
       <mat-list-item *ngFor="let person of peopleList">
-        <mat-checkbox [(ngModel)]="person.didGo">{{ person.name | urldecode }}</mat-checkbox>
+        <mat-checkbox [(ngModel)]="person.did_go">{{ person.name | urldecode }}</mat-checkbox>
         <span class="flex"></span>
-        <mat-radio-button [value]="person.id"></mat-radio-button>
+        <mat-radio-button [value]="person.id" [checked]="person.id==payed"></mat-radio-button>
       </mat-list-item>
     </mat-list>
   </mat-radio-group>
+  <div *ngIf="idCoffee!=0" class="center">
+    <button mat-raised-button color="warn" (click)="deleteDay()">
+      <mat-icon>delete</mat-icon>
+      EZABATU
+    </button>
+  </div>
 </mat-card>

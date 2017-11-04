@@ -17,7 +17,7 @@ export class DialogService {
     dialogRef.componentInstance.title = options.title;
     dialogRef.componentInstance.content = options.content;
     dialogRef.componentInstance.ok = options.ok;
-    dialogRef.componentInstance.error = options.error;
+    dialogRef.componentInstance.cancel = options.cancel;
 
     return dialogRef.afterClosed();
   }

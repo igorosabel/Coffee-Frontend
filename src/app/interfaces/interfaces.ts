@@ -37,7 +37,7 @@ export interface DialogOptions {
   title: string;
   content: string;
   ok: string;
-  error?: string;
+  cancel?: string;
 }
 
 export interface CoffeeData {
@@ -50,6 +50,17 @@ export interface CoffeeData {
   list: number[];
 }
 
-export interface SaveResult {
+export interface StatusResult {
   status: string;
+}
+
+export interface DayData {
+  status: string;
+  d: number;
+  m: number;
+  y: number;
+  id_coffee: number;
+  special: boolean;
+  id_pay: number;
+  list: PeopleResult[];
 }

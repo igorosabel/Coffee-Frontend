@@ -29,24 +29,21 @@ export class DayComponent implements OnInit {
     this.day = <CalendarDay> this.dss.getGlobal('day');
     const date = new Date(this.day.year, this.day.month-1, this.day.day);
     this.special = (date.getDay()===5);
-	  if (this.dss.getGlobal('people') === null){
-      this.as.getPeople().subscribe(result => {
-		    this.people = result.people;
-		    this.dss.setGlobal('people', this.people);
-		    this.loadPeopleList();
-      });
-    }
-	  else{
-      this.people = this.dss.getGlobal('people');
-      this.loadPeopleList();
-	  }
+	  
+	  this.as.getDay(this.day).subscribe(result => {
+  	  this.idCoffee = result.id_coffee;
+  	  this.payed = result.id_pay;
+  	  
+  	  this.people = result.list;
+  	  this.loadPeopleList();
+	  });
   }
   
   loadPeopleList(){
     for(let person in this.people){
-      this.people[person].didGo = false;
       this.peopleList.push( this.people[person] );
     }
+    console.log(this.peopleList);
   }
   
   back(){
@@ -57,7 +54,7 @@ export class DayComponent implements OnInit {
   save(){
     let ok = false;
     for (let i in this.peopleList){
-      if (this.peopleList[i].didGo){
+      if (this.peopleList[i].did_go){
         ok = true;
         break;
       }
@@ -84,7 +81,7 @@ export class DayComponent implements OnInit {
     };
     
     for (let i in this.peopleList){
-      if (this.peopleList[i].didGo){
+      if (this.peopleList[i].did_go){
         saveObj.list.push(this.peopleList[i].id);
       }
     }
@@ -96,6 +93,18 @@ export class DayComponent implements OnInit {
       }
       else{
         this.dialog.alert({title: 'Errorea', content: 'Akats bat gertatu da datuak gordetzerakoan.', ok: 'Ados'});
+      }
+    });
+  }
+  
+  deleteDay(){
+    this.dialog.confirm({title: 'Kafea ezabatu', content: 'Ziur zaude kafe hau ezabatu nahi duzula?', ok: 'Ados', cancel: 'Utzi'})
+    .subscribe(result => {
+      if (result===true){
+        this.as.deleteCoffee(this.idCoffee).subscribe(result => {
+          this.dss.removeGlobal('events');
+          this.back();
+        });
       }
     });
   }

@@ -8,7 +8,9 @@ import {
   PeopleListResult,
   PeopleResult,
   CoffeeData,
-  SaveResult
+  StatusResult,
+  CalendarDay,
+  DayData
 } from '../interfaces/interfaces';
 
 @Injectable()
@@ -24,7 +26,15 @@ export class ApiService {
     return this.http.post<PeopleListResult>('https://coffee.osumi.es/api/person/get-people', {});
   }
   
-  saveCoffee(coffeData: CoffeeData): Observable<SaveResult> {
-    return this.http.post<SaveResult>('https://coffee.osumi.es/api/coffee/save', coffeData);
+  saveCoffee(coffeData: CoffeeData): Observable<StatusResult> {
+    return this.http.post<StatusResult>('https://coffee.osumi.es/api/coffee/save', coffeData);
+  }
+  
+  getDay(day: CalendarDay): Observable<DayData> {
+    return this.http.post<DayData>('https://coffee.osumi.es/api/get-day', day);
+  }
+  
+  deleteCoffee(id: number): Observable<StatusResult> {
+    return this.http.post<StatusResult>('https://coffee.osumi.es/api/coffee/delete', {id});
   }
 }
