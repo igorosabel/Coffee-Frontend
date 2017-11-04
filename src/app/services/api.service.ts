@@ -10,7 +10,9 @@ import {
   CoffeeData,
   StatusResult,
   CalendarDay,
-  DayData
+  DayData,
+  Person,
+  PersonResult
 } from '../interfaces/interfaces';
 
 @Injectable()
@@ -36,5 +38,9 @@ export class ApiService {
   
   deleteCoffee(id: number): Observable<StatusResult> {
     return this.http.post<StatusResult>('https://coffee.osumi.es/api/coffee/delete', {id});
+  }
+  
+  savePerson(person: Person): Observable<PersonResult> {
+    return this.http.post<PersonResult>('https://coffee.osumi.es/api/person/save', person);
   }
 }

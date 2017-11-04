@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ColorPickerModule } from 'ngx-color-picker';
 import {
 	MatToolbarModule,
 	MatButtonModule,
@@ -12,8 +13,9 @@ import {
 	MatListModule,
 	MatSidenavModule,
 	MatCheckboxModule,
-    MatRadioModule,
-	MatDialogModule
+  MatRadioModule,
+	MatDialogModule,
+	MatInputModule
 } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -23,6 +25,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DayComponent } from './components/day/day.component';
 import { PeopleComponent } from './components/people/people.component';
 import { ColorsComponent } from './components/colors/colors.component';
+import { AddPersonComponent } from './components/add-person/add-person.component';
 
 import { ApiService } from './services/api.service';
 import { DataShareService } from './services/data-share.service';
@@ -38,7 +41,8 @@ import { FormatNumPipe } from './pipes/format-num.pipe';
 const appRoutes: Routes = [
   { path: '', component: CoffeeComponent },
   { path: 'day', component: DayComponent },
-  { path: 'people', component: PeopleComponent }
+  { path: 'people', component: PeopleComponent },
+  { path: 'add-person', component: AddPersonComponent }
 ];
 
 @NgModule({
@@ -54,7 +58,8 @@ const appRoutes: Routes = [
     PercentageFridaysPipe,
     FormatNumPipe,
 	  ConfirmDialogComponent,
-	  AlertDialogComponent
+	  AlertDialogComponent,
+	  AddPersonComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +68,7 @@ const appRoutes: Routes = [
 	  FormsModule,
 	  FlexLayoutModule,
     RouterModule.forRoot(appRoutes),
+    ColorPickerModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -71,7 +77,8 @@ const appRoutes: Routes = [
     MatSidenavModule,
 	  MatCheckboxModule,
 	  MatRadioModule,
-	  MatDialogModule
+	  MatDialogModule,
+	  MatInputModule
   ],
   entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
   providers: [ApiService, DataShareService, DialogService],

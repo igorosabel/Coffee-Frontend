@@ -64,3 +64,14 @@ export interface DayData {
   id_pay: number;
   list: PeopleResult[];
 }
+
+export interface Person {
+  id: number;
+  name: string;
+  color: string;
+}
+
+export interface PersonResult {
+  status: string;
+  id: number;
+}
