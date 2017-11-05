@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { routing, appRoutingProviders } from './app.routes';
 import { ColorPickerModule } from 'ngx-color-picker';
 import {
 	MatToolbarModule,
@@ -17,7 +18,6 @@ import {
 	MatDialogModule,
 	MatInputModule
 } from '@angular/material';
-import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CoffeeComponent } from './components/coffee/coffee.component';
@@ -26,6 +26,7 @@ import { DayComponent } from './components/day/day.component';
 import { PeopleComponent } from './components/people/people.component';
 import { ColorsComponent } from './components/colors/colors.component';
 import { AddPersonComponent } from './components/add-person/add-person.component';
+import { EditPersonComponent } from './components/edit-person/edit-person.component';
 
 import { ApiService } from './services/api.service';
 import { DataShareService } from './services/data-share.service';
@@ -37,13 +38,6 @@ import { UrldecodePipe } from './pipes/urldecode.pipe';
 import { PercentageTotalPipe } from './pipes/percentage-total.pipe';
 import { PercentageFridaysPipe } from './pipes/percentage-fridays.pipe';
 import { FormatNumPipe } from './pipes/format-num.pipe';
-
-const appRoutes: Routes = [
-  { path: '', component: CoffeeComponent },
-  { path: 'day', component: DayComponent },
-  { path: 'people', component: PeopleComponent },
-  { path: 'add-person', component: AddPersonComponent }
-];
 
 @NgModule({
   declarations: [
@@ -59,7 +53,8 @@ const appRoutes: Routes = [
     FormatNumPipe,
 	  ConfirmDialogComponent,
 	  AlertDialogComponent,
-	  AddPersonComponent
+	  AddPersonComponent,
+	  EditPersonComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +62,7 @@ const appRoutes: Routes = [
     HttpClientModule,
 	  FormsModule,
 	  FlexLayoutModule,
-    RouterModule.forRoot(appRoutes),
+    routing,
     ColorPickerModule,
     MatToolbarModule,
     MatButtonModule,
@@ -81,7 +76,7 @@ const appRoutes: Routes = [
 	  MatInputModule
   ],
   entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
-  providers: [ApiService, DataShareService, DialogService],
+  providers: [appRoutingProviders, ApiService, DataShareService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

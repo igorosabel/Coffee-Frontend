@@ -10,7 +10,7 @@
 <mat-card class="card-95">
   <mat-nav-list>
     <mat-list-item *ngFor="let person of peopleList">
-      <a href="#">
+      <a routerLink="['/edit-person', person.id]">
         <div class="person_{{ person.id }}">{{ person.name | urldecode }}</div>
       </a>
     </mat-list-item>
