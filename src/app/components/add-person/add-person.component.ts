@@ -23,7 +23,6 @@ export class AddPersonComponent implements OnInit {
   ngOnInit() {}
   
   save(){
-    debugger;
     if (this.name===''){
       this.dialog.alert({title: 'Errorea', content: 'Izena ezinbestekoa da!', ok: 'Ados'});
       return false;

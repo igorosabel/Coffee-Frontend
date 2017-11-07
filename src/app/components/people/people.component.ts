@@ -1,4 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ColorsComponent } from '../colors/colors.component';
 import { ApiService } from '../../services/api.service';
 import { DataShareService } from '../../services/data-share.service';
@@ -14,7 +15,7 @@ export class PeopleComponent implements OnInit {
   people = {};
   peopleList = [];
 
-  constructor(private as: ApiService, private dss: DataShareService) { }
+  constructor(private as: ApiService, private dss: DataShareService, private router: Router) { }
 
   ngOnInit() {
     if (this.dss.getGlobal('people') === null){
@@ -27,14 +28,19 @@ export class PeopleComponent implements OnInit {
     else{
       this.people = this.dss.getGlobal('people');
       this.loadPeopleList();
-	  }
+	}
   }
   
   loadPeopleList(){
+	  console.log(this.people);
     for(let person in this.people){
       this.peopleList.push( this.people[person] );
     }
     this.colors.loadColors(this.peopleList);
+  }
+  
+  editPerson(id){
+	  this.router.navigate(['/edit-person', id]);
   }
 
 }

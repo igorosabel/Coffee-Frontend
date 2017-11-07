@@ -43,4 +43,8 @@ export class ApiService {
   savePerson(person: Person): Observable<PersonResult> {
     return this.http.post<PersonResult>('https://coffee.osumi.es/api/person/save', person);
   }
+  
+  deletePerson(id: number): Observable<StatusResult> {
+    return this.http.post<StatusResult>('https://coffee.osumi.es/api/person/delete', {id});
+  }
 }

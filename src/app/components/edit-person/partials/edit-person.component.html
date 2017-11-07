@@ -1,3 +1,42 @@
-<p>
-  edit-person works! id: {{ id }}
-</p>
+<mat-toolbar color="primary">
+  <button mat-icon-button routerLink="/people">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>{{ name }}</span>
+  <span class="flex"></span>
+  <button *ngIf="!sending" mat-icon-button (click)="save()">
+    <mat-icon>check</mat-icon>
+  </button>
+  <span *ngIf="sending" class="saving-bg">
+    <img src="/assets/loading.svg" alt="Gordetzen...">
+  </span>
+</mat-toolbar>
+
+<div class="content">
+  <div class="row">
+    <mat-form-field class="full-width">
+      <span matPrefix>
+        <mat-icon>person</mat-icon>
+        &nbsp;
+      </span>
+      <input matInput [(ngModel)]="name" placeholder="Izena">
+    </mat-form-field>
+  </div>
+  
+  <div class="row">
+    <mat-form-field class="full-width">
+      <span matPrefix>
+        <mat-icon>color_lens</mat-icon>
+        &nbsp;
+      </span>
+      <input matInput placeholder="Kolorea" [(colorPicker)]="color" [cpPosition]="'bottom'" [style.background]="color" [value]="color">
+    </mat-form-field>
+  </div>
+  
+  <div class="center">
+    <button mat-raised-button color="warn" (click)="deletePerson()">
+      <mat-icon>delete</mat-icon>
+      EZABATU
+    </button>
+  </div>
+</div>
