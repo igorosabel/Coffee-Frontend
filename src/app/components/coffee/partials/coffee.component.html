@@ -41,7 +41,7 @@
     </div>
     <mat-nav-list>
       <mat-list-item *ngFor="let person of peopleList">
-        <a href="#">
+        <a (click)="goToPerson(person.id)">
           <div class="col col-50">
             <div class="person_{{ person.id }}">{{ person.name | urldecode }}</div>
           </div>

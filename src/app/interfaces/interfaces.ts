@@ -6,9 +6,9 @@ export interface MonthResult {
 }
 
 export interface MonthDayResult {
-	d: number;
-	id_person: number;
-	people: number[];
+  d: number;
+  id_person: number;
+  people: number[];
 }
 
 
@@ -74,4 +74,21 @@ export interface Person {
 export interface PersonResult {
   status: string;
   id: number;
+}
+
+export interface PersonDetailResult {
+  status: string;
+  id: number;
+  name: string;
+  color: string;
+  list: PersonCoffee[];
+}
+
+export interface PersonCoffee {
+  id: number;
+  d: number;
+  m: number;
+  y: number;
+  special: boolean;
+  id_person: number;
 }

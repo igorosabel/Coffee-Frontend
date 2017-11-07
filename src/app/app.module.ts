@@ -27,7 +27,9 @@ import { PeopleComponent } from './components/people/people.component';
 import { ColorsComponent } from './components/colors/colors.component';
 import { AddPersonComponent } from './components/add-person/add-person.component';
 import { EditPersonComponent } from './components/edit-person/edit-person.component';
+import { PersonComponent } from './components/person/person.component';
 
+import { CommonService } from './services/common.service';
 import { ApiService } from './services/api.service';
 import { DataShareService } from './services/data-share.service';
 import { DialogService } from './services/dialog.service';
@@ -54,7 +56,8 @@ import { FormatNumPipe } from './pipes/format-num.pipe';
 	ConfirmDialogComponent,
 	AlertDialogComponent,
 	AddPersonComponent,
-	EditPersonComponent
+	EditPersonComponent,
+	PersonComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,7 @@ import { FormatNumPipe } from './pipes/format-num.pipe';
 	MatInputModule
   ],
   entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
-  providers: [appRoutingProviders, ApiService, DataShareService, DialogService],
+  providers: [appRoutingProviders, CommonService, ApiService, DataShareService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

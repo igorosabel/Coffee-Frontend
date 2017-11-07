@@ -147,4 +147,8 @@ export class CoffeeComponent implements OnInit {
     this.sortOrder = (this.sortOrder=='up') ? 'down' : 'up';
     this.listOrder();
   }
+  
+  goToPerson(id){
+    this.router.navigate(['/person', id]);
+  }
 }

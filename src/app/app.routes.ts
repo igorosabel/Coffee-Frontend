@@ -4,13 +4,15 @@ import { DayComponent } from './components/day/day.component';
 import { PeopleComponent } from './components/people/people.component';
 import { AddPersonComponent } from './components/add-person/add-person.component';
 import { EditPersonComponent } from './components/edit-person/edit-person.component';
+import { PersonComponent } from './components/person/person.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoffeeComponent },
   { path: 'day', component: DayComponent },
   { path: 'people', component: PeopleComponent },
   { path: 'add-person', component: AddPersonComponent },
-  { path: 'edit-person/:id', component: EditPersonComponent }
+  { path: 'edit-person/:id', component: EditPersonComponent },
+  { path: 'person/:id', component: PersonComponent },
 ];
 
 export const appRoutingProviders: any[] = [
