@@ -28,6 +28,7 @@ import { ColorsComponent } from './components/colors/colors.component';
 import { AddPersonComponent } from './components/add-person/add-person.component';
 import { EditPersonComponent } from './components/edit-person/edit-person.component';
 import { PersonComponent } from './components/person/person.component';
+import { CoffeeListComponent } from './components/coffee-list/coffee-list.component';
 
 import { CommonService } from './services/common.service';
 import { ApiService } from './services/api.service';
@@ -57,7 +58,8 @@ import { FormatNumPipe } from './pipes/format-num.pipe';
 	AlertDialogComponent,
 	AddPersonComponent,
 	EditPersonComponent,
-	PersonComponent
+	PersonComponent,
+	CoffeeListComponent
   ],
   imports: [
     BrowserModule,

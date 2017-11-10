@@ -21,7 +21,7 @@ export class ApiService {
   constructor(private http : HttpClient){}
 
   getMonth(month: number, year: number): Observable<MonthResult> {
-    return this.http.post<MonthResult>('https://coffee.osumi.es/api/coffee/get-month', {month, year});
+    return this.http.post<MonthResult>('https://coffee.osumi.es/api/coffee/get-month-list', {month, year});
   }
   
   getPeople(): Observable<PeopleListResult> {

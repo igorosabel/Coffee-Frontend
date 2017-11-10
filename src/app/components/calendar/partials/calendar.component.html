@@ -9,7 +9,12 @@
   </div>
   <div class="calendar-table">
     <div *ngFor="let row of rows" class="calendar-row">
-	  <div *ngFor="let day of row" class="{{ day.class }}" (click)="selectDay(day)">{{ day.day }}</div>
+	  <div *ngFor="let day of row" class="{{ day.class }}" (click)="selectDay(day)">
+  	  {{ day.day }}
+  	  <div *ngIf="day.events && day.events.list.length>1" class="day-list">
+    	  <div *ngFor="let event of day.events.list" class="day-event person_{{ event.id_person }}"></div>
+  	  </div>
+    </div>
 	</div>
   </div>
 </div>
