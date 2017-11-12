@@ -6,6 +6,7 @@ import { PeopleComponent } from './components/people/people.component';
 import { AddPersonComponent } from './components/add-person/add-person.component';
 import { EditPersonComponent } from './components/edit-person/edit-person.component';
 import { PersonComponent } from './components/person/person.component';
+import { DayListComponent } from './components/day-list/day-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoffeeComponent },
@@ -15,10 +16,9 @@ const appRoutes: Routes = [
   { path: 'add-person', component: AddPersonComponent },
   { path: 'edit-person/:id', component: EditPersonComponent },
   { path: 'person/:id', component: PersonComponent },
+  { path: 'day-list', component: DayListComponent }
 ];
 
-export const appRoutingProviders: any[] = [
-
-];
+export const appRoutingProviders: any[] = [];
 
 export const routing = RouterModule.forRoot(appRoutes);

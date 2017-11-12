@@ -43,7 +43,6 @@ export class DayComponent implements OnInit {
     for(let person in this.people){
       this.peopleList.push( this.people[person] );
     }
-    console.log(this.peopleList);
   }
   
   back(){
@@ -107,5 +106,13 @@ export class DayComponent implements OnInit {
         });
       }
     });
+  }
+  
+  addNew(){
+    this.idCoffee = 0;
+    for (let i in this.peopleList){
+      this.peopleList[i].did_go = false;
+    }
+    this.payed = null;
   }
 }

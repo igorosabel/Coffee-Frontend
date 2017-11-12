@@ -28,6 +28,10 @@ html, body, material-app, mat-sidenav-container{
   margin: 16px auto;
 }
 
+.card-bottom{
+  margin-bottom: 76px;
+}
+
 .col{
   display: inline-block;
   height: 100%;
@@ -84,4 +88,12 @@ mat-list-item a{
 .saving-bg > img{
   width: 24px;
   vertical-align: middle;
+}
+
+.fab-right{
+  top: auto !important;
+  right: 20px !important;
+  bottom: 10px !important;
+  left: auto !important;
+  position: fixed !important;
 }

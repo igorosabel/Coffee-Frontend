@@ -96,8 +96,14 @@ export class CoffeeComponent implements OnInit {
   }
   
   selectDay(ev){
+    const day = this.events.find(function (obj) { return obj.d === ev.day; });    
 	  this.dss.setGlobal('day', ev);
-	  this.router.navigate(['/day']);
+	  if (day && day.list.length>1){
+  	  this.router.navigate(['/day-list']);
+	  }
+	  else{
+	    this.router.navigate(['/day']);
+	  }
   }
   
   changeMonth(ev){

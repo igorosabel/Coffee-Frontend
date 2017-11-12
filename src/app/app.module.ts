@@ -29,6 +29,7 @@ import { AddPersonComponent } from './components/add-person/add-person.component
 import { EditPersonComponent } from './components/edit-person/edit-person.component';
 import { PersonComponent } from './components/person/person.component';
 import { CoffeeListComponent } from './components/coffee-list/coffee-list.component';
+import { DayListComponent } from './components/day-list/day-list.component';
 
 import { CommonService } from './services/common.service';
 import { ApiService } from './services/api.service';
@@ -41,32 +42,37 @@ import { UrldecodePipe } from './pipes/urldecode.pipe';
 import { PercentageTotalPipe } from './pipes/percentage-total.pipe';
 import { PercentageFridaysPipe } from './pipes/percentage-fridays.pipe';
 import { FormatNumPipe } from './pipes/format-num.pipe';
+import { PeopleListPipe } from './pipes/people-list.pipe';
+import { PeoplePayPipe } from './pipes/people-pay.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoffeeComponent,
     CalendarComponent,
-	DayComponent,
+    DayComponent,
     PeopleComponent,
     ColorsComponent,
     UrldecodePipe,
     PercentageTotalPipe,
     PercentageFridaysPipe,
     FormatNumPipe,
-	ConfirmDialogComponent,
-	AlertDialogComponent,
-	AddPersonComponent,
-	EditPersonComponent,
-	PersonComponent,
-	CoffeeListComponent
+    ConfirmDialogComponent,
+    AlertDialogComponent,
+    AddPersonComponent,
+    EditPersonComponent,
+    PersonComponent,
+    CoffeeListComponent,
+    DayListComponent,
+    PeopleListPipe,
+    PeoplePayPipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-	FormsModule,
-	FlexLayoutModule,
+    FormsModule,
+    FlexLayoutModule,
     routing,
     ColorPickerModule,
     MatToolbarModule,
@@ -75,10 +81,10 @@ import { FormatNumPipe } from './pipes/format-num.pipe';
     MatCardModule,
     MatListModule,
     MatSidenavModule,
-	MatCheckboxModule,
-	MatRadioModule,
-	MatDialogModule,
-	MatInputModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatInputModule
   ],
   entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
   providers: [appRoutingProviders, CommonService, ApiService, DataShareService, DialogService],

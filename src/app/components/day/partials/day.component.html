@@ -12,7 +12,7 @@
   </span>
 </mat-toolbar>
 
-<mat-card class="card-95">
+<mat-card class="card-95 card-bottom">
   <h1 *ngIf="special" class="center">Ostirala!</h1>
   <div class="row">
     <span>Joan da</span>
@@ -35,3 +35,7 @@
     </button>
   </div>
 </mat-card>
+
+<a *ngIf="idCoffee!=0" mat-fab class="fab-right" (click)="addNew()">
+  <mat-icon>add</mat-icon>
+</a>
