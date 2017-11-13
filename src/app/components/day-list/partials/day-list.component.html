@@ -11,7 +11,7 @@
       <a (click)="goToEvent(event.id)">
         {{ event.people | peopleList:people }}
         <span class="flex"></span>
-        <strong>{{ event.id_person | peoplePay;people }}</strong>
+        <strong>{{ event.id_person | peoplePay:people }}</strong>
       </a>
     </mat-list-item>
   </mat-nav-list>
