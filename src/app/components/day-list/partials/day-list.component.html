@@ -8,7 +8,7 @@
 <mat-card class="card-95">
   <mat-nav-list>
     <mat-list-item *ngFor="let event of selectedDay.list">
-      <a (click)="goToEvent(event.id)">
+      <a class="row" (click)="goToEvent(event.id)">
         {{ event.people | peopleList:people }}
         <span class="flex"></span>
         <strong>{{ event.id_person | peoplePay:people }}</strong>

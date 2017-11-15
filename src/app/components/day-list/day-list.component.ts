@@ -59,5 +59,9 @@ export class DayListComponent implements OnInit {
     this.selectedDay = this.events.find(function (obj) { return obj.d === check; });
     console.log(this.selectedDay);
   }
+  
+  goToEvent(id){
+    console.log(id);
+  }
 
 }
