@@ -61,7 +61,8 @@ export class DayListComponent implements OnInit {
   }
   
   goToEvent(id){
-    console.log(id);
+    this.dss.setGlobal('idDay', id);
+    this.router.navigate(['/day']);
   }
 
 }

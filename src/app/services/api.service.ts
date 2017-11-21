@@ -36,6 +36,10 @@ export class ApiService {
     return this.http.post<DayData>('https://coffee.osumi.es/api/get-day', day);
   }
   
+  getCoffee(id: number): Observable<DayData> {
+    return this.http.post<DayData>('https://coffee.osumi.es/api/coffee/get', {id});
+  }
+  
   deleteCoffee(id: number): Observable<StatusResult> {
     return this.http.post<StatusResult>('https://coffee.osumi.es/api/coffee/delete', {id});
   }

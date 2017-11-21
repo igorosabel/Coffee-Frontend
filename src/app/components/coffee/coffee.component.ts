@@ -102,7 +102,13 @@ export class CoffeeComponent implements OnInit {
   	  this.router.navigate(['/day-list']);
 	  }
 	  else{
-	    this.router.navigate(['/day']);
+      if (day){
+        this.dss.setGlobal('idDay', day.list[0].id);
+      }
+      else{
+        this.dss.setGlobal('idDay', null);
+      }
+      this.router.navigate(['/day']);
 	  }
   }
   

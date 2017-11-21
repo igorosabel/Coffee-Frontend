@@ -26,17 +26,29 @@ export class DayComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.idCoffee = this.dss.getGlobal('idDay');
     this.day = <CalendarDay> this.dss.getGlobal('day');
     const date = new Date(this.day.year, this.day.month-1, this.day.day);
     this.special = (date.getDay()===5);
 	  
-	  this.as.getDay(this.day).subscribe(result => {
-  	  this.idCoffee = result.id_coffee;
-  	  this.payed = result.id_pay;
+	  if (this.idCoffee===null){
+  	  this.as.getDay(this.day).subscribe(result => {
+  	    this.idCoffee = result.id_coffee;
+  	    this.payed = result.id_pay;
   	  
-  	  this.people = result.list;
-  	  this.loadPeopleList();
-	  });
+  	    this.people = result.list;
+  	    this.loadPeopleList();
+	    });
+	  }
+	  else{
+	    this.as.getCoffee(this.idCoffee).subscribe(result => {
+  	    this.idCoffee = result.id_coffee;
+  	    this.payed = result.id_pay;
+  	  
+  	    this.people = result.list;
+  	    this.loadPeopleList();
+	    });
+	  }
   }
   
   loadPeopleList(){
