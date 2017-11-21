@@ -90,7 +90,9 @@ export class CalendarComponent implements OnInit {
     const now = new Date();
     let today = (this.year===now.getFullYear() && this.month===now.getMonth() && this.day===day) ? ' calendar-today' : '';
     let marked = '';
-    if (this.marked[day] && this.marked[day].list.length==1){
+    console.log(this.marked);
+    console.log(day);
+    if (this.marked[day] && this.marked[day].list && this.marked[day].list.length==1){
       marked = ' person_' + this.marked[day].list[0].id_person;
     }
     return {class:'calendar-day calendar-clickable'+today+marked, day: day, events: this.marked[day]};

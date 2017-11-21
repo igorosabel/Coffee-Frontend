@@ -7,10 +7,14 @@ export interface MonthResult {
 
 export interface MonthDayResult {
   d: number;
+  list: DayResult[];
+}
+
+export interface DayResult {
+  id: number;
   id_person: number;
   people: number[];
 }
-
 
 export interface PeopleListResult {
   [key: string]: PeopleResult
