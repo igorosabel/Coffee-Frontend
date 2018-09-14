@@ -32,7 +32,6 @@ export class PeopleComponent implements OnInit {
   }
   
   loadPeopleList(){
-	  console.log(this.people);
     for(let person in this.people){
       this.peopleList.push( this.people[person] );
     }

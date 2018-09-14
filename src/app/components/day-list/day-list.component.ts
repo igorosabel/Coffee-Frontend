@@ -57,8 +57,6 @@ export class DayListComponent implements OnInit {
   loadDayList(){
     const check = this.day.day;
     this.selectedDay = this.events.find(function (obj) { return obj.d === check; });
-    console.log(this.selectedDay);
-    console.log(this.events);
   }
   
   goToEvent(id){
