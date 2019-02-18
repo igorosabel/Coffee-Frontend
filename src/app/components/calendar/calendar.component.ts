@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ObservableMedia } from '@angular/flex-layout';
+import { ObservableMedia }                         from '@angular/flex-layout';
 
 @Component({
   selector: 'calendar',
-  templateUrl: './partials/calendar.component.html',
+  templateUrl: './html/calendar.component.html',
   styleUrls: ['./css/calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
@@ -14,43 +14,43 @@ export class CalendarComponent implements OnInit {
   monthsShort = ['Urt','Ots','Mar','Api','Mai','Eka','Uzt','Abu','Ira','Urr','Aza','Abe'];
   days = ['Astelehena','Asteartea','Asteazkena','Osteguna','Ostirala','Larunbata','Igandea'];
   daysShort = ['Asl','Ast','Asz','Ost','Osi','Lar','Iga'];
-  
+
   day = null;
   month = null;
   year = null;
   events = [];
   marked = {};
-  
+
   currentMonth = null;
   currentYear = null;
   headerDays = [];
   rows = [];
-  
+
   constructor(public media:ObservableMedia) {}
 
   ngOnInit() {}
-  
+
   selectDay(d){
     this.select.emit({day: d.day, month: this.month+1, year: this.year});
   }
-  
+
   setDate(d){
 	  this.day = d.day;
 	  this.month = d.month;
 	  this.year = d.year;
   }
-  
+
   getDate(){
     return {day: this.day, month: this.month, year: this.year};
   }
-  
+
   setEvents(events){
     this.rows = [];
     this.events = events;
     this.marked = {};
     this.events.forEach(element => this.marked[element.d] = element);
   }
-  
+
   previousMonth(ev){
     ev.preventDefault();
     this.month--;
@@ -61,7 +61,7 @@ export class CalendarComponent implements OnInit {
     this.setEvents([]);
     this.change.emit(this.getDate());
   }
-  
+
   nextMonth(ev){
     ev.preventDefault();
     this.month++;
@@ -72,20 +72,20 @@ export class CalendarComponent implements OnInit {
     this.setEvents([]);
     this.change.emit(this.getDate());
   }
-  
+
   header(){
     const months = this.media.isActive('gt-xs') ? this.months : this.monthsShort;
     const days = this.media.isActive('gt-xs') ? this.days   : this.daysShort;
-	
+
     this.currentMonth = months[this.month];
     this.currentYear = this.year;
     this.headerDays = days;
   }
-  
+
   otherMonthDay(day){
     return {class:'calendar-day-other', day: day};
   }
-  
+
   currentMonthDay(day){
     const now = new Date();
     let today = (this.year===now.getFullYear() && this.month===now.getMonth() && this.day===day) ? ' calendar-today' : '';
@@ -95,7 +95,7 @@ export class CalendarComponent implements OnInit {
     }
     return {class:'calendar-day calendar-clickable'+today+marked, day: day, events: this.marked[day]};
   }
-  
+
   draw(){
     // Obtengo el primer día del mes y el primer día de la semana
     const firstDay = new Date(this.year, this.month, 1);
@@ -119,7 +119,7 @@ export class CalendarComponent implements OnInit {
     for (let i = 0; i < 9; i++){
 	  if (nextMonth){ continue; }
 	  let days = [];
-	  
+
       // Bucle días de la semana (celdas)
       for (let j = 1; j <= 7; j++){
         if (day <= monthLength && (i > 0 || j >= firstDayWeekday)){
@@ -141,7 +141,7 @@ export class CalendarComponent implements OnInit {
           }
         }
       }
-	  
+
 	    this.rows.push(days);
     }
   }

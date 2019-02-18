@@ -1,93 +1,39 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule }           from '@angular/platform-browser';
+import { NgModule }                from '@angular/core';
+import { HttpClientModule }        from '@angular/common/http';
+import { FlexLayoutModule }        from '@angular/flex-layout';
+import { FormsModule }             from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { routing, appRoutingProviders } from './app.routes';
-import { ColorPickerModule } from 'ngx-color-picker';
-import {
-	MatToolbarModule,
-	MatButtonModule,
-	MatIconModule,
-	MatCardModule,
-	MatListModule,
-	MatSidenavModule,
-	MatCheckboxModule,
-  MatRadioModule,
-	MatDialogModule,
-	MatInputModule
-} from '@angular/material';
+import { AppRoutingModule }        from './app-routing.module';
+import { ColorPickerModule }       from 'ngx-color-picker';
+import { AppComponent }            from './app.component';
 
-import { AppComponent } from './app.component';
-import { CoffeeComponent } from './components/coffee/coffee.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
-import { DayComponent } from './components/day/day.component';
-import { PeopleComponent } from './components/people/people.component';
-import { ColorsComponent } from './components/colors/colors.component';
-import { AddPersonComponent } from './components/add-person/add-person.component';
-import { EditPersonComponent } from './components/edit-person/edit-person.component';
-import { PersonComponent } from './components/person/person.component';
-import { CoffeeListComponent } from './components/coffee-list/coffee-list.component';
-import { DayListComponent } from './components/day-list/day-list.component';
+import { PAGES, COMPONENTS, PIPES, SERVICES, MATERIAL } from './app.common';
 
-import { CommonService } from './services/common.service';
-import { ApiService } from './services/api.service';
-import { DataShareService } from './services/data-share.service';
-import { DialogService } from './services/dialog.service';
-import { ConfirmDialogComponent } from './services/dialogs/confirm-dialog.component';
-import { AlertDialogComponent } from './services/dialogs/alert-dialog.component';
-
-import { UrldecodePipe } from './pipes/urldecode.pipe';
-import { PercentageTotalPipe } from './pipes/percentage-total.pipe';
-import { PercentageFridaysPipe } from './pipes/percentage-fridays.pipe';
-import { FormatNumPipe } from './pipes/format-num.pipe';
-import { PeopleListPipe } from './pipes/people-list.pipe';
-import { PeoplePayPipe } from './pipes/people-pay.pipe';
+import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
+import { AlertDialogComponent }   from './components/dialogs/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CoffeeComponent,
-    CalendarComponent,
-    DayComponent,
-    PeopleComponent,
-    ColorsComponent,
-    UrldecodePipe,
-    PercentageTotalPipe,
-    PercentageFridaysPipe,
-    FormatNumPipe,
-    ConfirmDialogComponent,
-    AlertDialogComponent,
-    AddPersonComponent,
-    EditPersonComponent,
-    PersonComponent,
-    CoffeeListComponent,
-    DayListComponent,
-    PeopleListPipe,
-    PeoplePayPipe
+		AppComponent,
+		...PAGES,
+		...COMPONENTS,
+		...PIPES
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    FlexLayoutModule,
-    routing,
-    ColorPickerModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatListModule,
-    MatSidenavModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatDialogModule,
-    MatInputModule
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		HttpClientModule,
+		FormsModule,
+		FlexLayoutModule,
+		ColorPickerModule,
+		...MATERIAL
   ],
   entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
-  providers: [appRoutingProviders, CommonService, ApiService, DataShareService, DialogService],
+  providers: [
+		...SERVICES
+	],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ApiService } from '../../services/api.service';
-import { DataShareService } from '../../services/data-share.service';
-import { DialogService } from '../../services/dialog.service';
-import { Person } from '../../interfaces/interfaces';
+import { Router }            from '@angular/router';
+import { ApiService }        from '../../services/api.service';
+import { DataShareService }  from '../../services/data-share.service';
+import { DialogService }     from '../../services/dialog.service';
+import { Person }            from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-add-person',
-  templateUrl: './partials/add-person.component.html',
+  templateUrl: './html/add-person.component.html',
   styleUrls: ['./css/add-person.component.css']
 })
 export class AddPersonComponent implements OnInit {
-  
-  name = '';
-  color = '#ffffff';
-  sending = false;
+  name: string = '';
+  color: string = '#ffffff';
+  sending: boolean = false;
 
   constructor(private as: ApiService, private dss: DataShareService, private dialog: DialogService, private router: Router) {
     this.dss.setSaveLocalStorage(true);
   }
 
   ngOnInit() {}
-  
+
   save(){
     if (this.name===''){
       this.dialog.alert({title: 'Errorea', content: 'Izena ezinbestekoa da!', ok: 'Ados'});
@@ -31,7 +30,7 @@ export class AddPersonComponent implements OnInit {
       this.dialog.alert({title: 'Errorea', content: 'Kolore bat aukeratu behar duzu!', ok: 'Ados'});
       return false;
     }
-    
+
     this.sending = true;
     const person: Person = {
       id: 0,

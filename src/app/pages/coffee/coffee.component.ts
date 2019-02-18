@@ -1,30 +1,27 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ColorsComponent } from '../colors/colors.component';
-import { CalendarComponent } from '../calendar/calendar.component';
-import { ApiService } from '../../services/api.service';
-import { DataShareService } from '../../services/data-share.service';
-import { CalendarDay } from '../../interfaces/interfaces';
+import { Router }                       from '@angular/router';
+import { ColorsComponent }              from '../../components/colors/colors.component';
+import { CalendarComponent }            from '../../components/calendar/calendar.component';
+import { ApiService }                   from '../../services/api.service';
+import { DataShareService }             from '../../services/data-share.service';
+import { CalendarDay }                  from '../../interfaces/interfaces';
+import { MonthDayResult, PeopleResult } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'coffee',
-  templateUrl: './partials/coffee.component.html',
+  templateUrl: './html/coffee.component.html',
   styleUrls: ['./css/coffee.component.css']
 })
 export class CoffeeComponent implements OnInit {
   @ViewChild('colors') colors : ColorsComponent;
   @ViewChild('calendar') calendar : CalendarComponent;
-  
-  data = {
-    day: 0,
-    month: 0,
-    year: 0
-  };
-  events = [];
+
+  data: CalendarDay = {day: 0, month: 0, year: 0};
+  events: MonthDayResult[] = [];
   people = {};
-  peopleList = [];
-  sortField = 'percentage';
-  sortOrder = 'down';
+  peopleList: PeopleResult[] = [];
+  sortField: string = 'percentage';
+  sortOrder: string = 'down';
 
   constructor(private as: ApiService, private dss: DataShareService, private router: Router) {
     this.dss.setSaveLocalStorage(true);
@@ -70,21 +67,21 @@ export class CoffeeComponent implements OnInit {
       this.loadPeopleList();
 	  }
   }
-  
-  startCalendar(){
+
+  startCalendar() {
     this.calendar.setDate(this.data);
     this.calendar.setEvents(this.events);
     this.calendar.draw();
   }
-  
-  loadPeopleList(){
+
+  loadPeopleList() {
     for(let person in this.people){
       this.peopleList.push( this.people[person] );
     }
     this.colors.loadColors(this.peopleList);
   }
-  
-  newDay(){
+
+  newDay() {
     const d = new Date();
     const day = <CalendarDay>{
   		day: d.getDate(),
@@ -94,9 +91,9 @@ export class CoffeeComponent implements OnInit {
   	this.dss.setGlobal('day', day);
   	this.router.navigate(['/day']);
   }
-  
-  selectDay(ev){
-    const day = this.events.find(function (obj) { return obj.d === ev.day; });    
+
+  selectDay(ev) {
+    const day = this.events.find(function (obj) { return obj.d === ev.day; });
 	  this.dss.setGlobal('day', ev);
 	  if (day && day.list.length>1){
   	  this.router.navigate(['/day-list']);
@@ -111,22 +108,22 @@ export class CoffeeComponent implements OnInit {
       this.router.navigate(['/day']);
 	  }
   }
-  
-  changeMonth(ev){
+
+  changeMonth(ev) {
     this.dss.removeGlobal('data');
     this.dss.removeGlobal('events');
-    
+
     this.data = ev;
     this.dss.setGlobal('data', this.data);
-    
+
     this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
 	    this.events = result.list;
       this.dss.setGlobal('events', this.events);
 	    this.startCalendar();
     });
   }
-  
-  listOrder(){
+
+  listOrder() {
     if (this.sortField=='percentage'){
       if (this.sortOrder=='down'){
         this.peopleList.sort(function(a, b) {
@@ -152,15 +149,15 @@ export class CoffeeComponent implements OnInit {
       }
     }
   }
-  
-  changeOrder(mode, ev){
+
+  changeOrder(mode, ev) {
     ev.preventDefault();
     this.sortField = mode;
     this.sortOrder = (this.sortOrder=='up') ? 'down' : 'up';
     this.listOrder();
   }
-  
-  goToPerson(id){
+
+  goToPerson(id) {
     this.router.navigate(['/person', id]);
   }
 }

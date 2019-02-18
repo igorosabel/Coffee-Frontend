@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ApiService } from '../../services/api.service';
-import { DataShareService } from '../../services/data-share.service';
+import { Component, OnInit }           from '@angular/core';
+import { Router }                      from '@angular/router';
+import { ApiService }                  from '../../services/api.service';
+import { DataShareService }            from '../../services/data-share.service';
 import { MonthDayResult, CalendarDay } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-day-list',
-  templateUrl: './partials/day-list.component.html',
+  templateUrl: './html/day-list.component.html',
   styleUrls: ['./css/day-list.component.css']
 })
 export class DayListComponent implements OnInit {
-  
   day: CalendarDay = {day: 0, month: 0, year: 0};
-  events = [];
+  events: MonthDayResult[] = [];
   people = {};
   selectedDay: MonthDayResult;
 
@@ -34,13 +33,13 @@ export class DayListComponent implements OnInit {
        this.loadPeopleList();
 	  }
   }
-  
-  back(){
+
+  back() {
 	  this.dss.removeGlobal('day');
 	  this.router.navigate(['/']);
   }
-  
-  loadPeopleList(){
+
+  loadPeopleList() {
     if (this.dss.getGlobal('people') === null){
       this.as.getPeople().subscribe(result => {
 		    this.people = result.people;
@@ -53,15 +52,14 @@ export class DayListComponent implements OnInit {
       this.loadDayList();
 	  }
   }
-  
-  loadDayList(){
+
+  loadDayList() {
     const check = this.day.day;
     this.selectedDay = this.events.find(function (obj) { return obj.d === check; });
   }
-  
-  goToEvent(id){
+
+  goToEvent(id) {
     this.dss.setGlobal('idDay', id);
     this.router.navigate(['/day']);
   }
-
 }

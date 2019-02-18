@@ -1,20 +1,19 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
-import { CommonService } from '../../services/common.service';
+import { DOCUMENT }                  from '@angular/platform-browser';
+import { CommonService }             from '../../services/common.service';
 
 @Component({
   selector: 'colors',
-  templateUrl: './partials/colors.component.html',
+  templateUrl: './html/colors.component.html',
   styleUrls: ['./css/colors.component.css']
 })
 export class ColorsComponent implements OnInit {
-  
-  css = '';
+  css: string = '';
 
   constructor(@Inject(DOCUMENT) private document, private common: CommonService) { }
 
   ngOnInit() {}
-  
+
   loadColors(peopleList){
     for (let i in peopleList){
       this.css += `
