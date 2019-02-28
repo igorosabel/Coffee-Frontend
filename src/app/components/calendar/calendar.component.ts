@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ObservableMedia }                         from '@angular/flex-layout';
+import { Subscription }                            from 'rxjs';
+import { MediaChange, MediaObserver }              from '@angular/flex-layout';
 
 @Component({
   selector: 'calendar',
@@ -25,10 +26,21 @@ export class CalendarComponent implements OnInit {
   currentYear = null;
   headerDays = [];
   rows = [];
+  
+  watcher: Subscription;
+  isMobile: boolean = false;
 
-  constructor(public media:ObservableMedia) {}
+  constructor(private mediaObserver: MediaObserver) {
+	this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
+      if ( change.mqAlias == 'xs') {
+         this.isMobile = true;
+      }
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isMobile = this.mediaObserver.isActive('xs');
+  }
 
   selectDay(d){
     this.select.emit({day: d.day, month: this.month+1, year: this.year});
@@ -74,8 +86,8 @@ export class CalendarComponent implements OnInit {
   }
 
   header(){
-    const months = this.media.isActive('gt-xs') ? this.months : this.monthsShort;
-    const days = this.media.isActive('gt-xs') ? this.days   : this.daysShort;
+    const months = this.isMobile ? this.monthsShort : this.months;
+    const days   = this.isMobile ? this.daysShort   : this.days;
 
     this.currentMonth = months[this.month];
     this.currentYear = this.year;
