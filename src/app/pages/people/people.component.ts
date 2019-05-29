@@ -11,7 +11,7 @@ import {  PeopleResult }                from '../../interfaces/interfaces';
   styleUrls: ['./css/people.component.css']
 })
 export class PeopleComponent implements OnInit {
-  @ViewChild('colors') colors : ColorsComponent;
+  @ViewChild('colors', { static: true }) colors : ColorsComponent;
 
   people = {};
   peopleList: PeopleResult[] = [];

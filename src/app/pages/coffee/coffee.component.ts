@@ -13,8 +13,8 @@ import { MonthDayResult, PeopleResult } from '../../interfaces/interfaces';
   styleUrls: ['./css/coffee.component.css']
 })
 export class CoffeeComponent implements OnInit {
-  @ViewChild('colors') colors : ColorsComponent;
-  @ViewChild('calendar') calendar : CalendarComponent;
+  @ViewChild('colors', { static: true }) colors : ColorsComponent;
+  @ViewChild('calendar', { static: true }) calendar : CalendarComponent;
 
   data: CalendarDay = {day: 0, month: 0, year: 0};
   events: MonthDayResult[] = [];
