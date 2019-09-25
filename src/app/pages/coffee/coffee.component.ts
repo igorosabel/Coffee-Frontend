@@ -9,8 +9,8 @@ import { MonthDayResult, PeopleResult } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'coffee',
-  templateUrl: './html/coffee.component.html',
-  styleUrls: ['./css/coffee.component.css']
+  templateUrl: './coffee.component.html',
+  styleUrls: ['./coffee.component.css']
 })
 export class CoffeeComponent implements OnInit {
   @ViewChild('colors', { static: true }) colors : ColorsComponent;

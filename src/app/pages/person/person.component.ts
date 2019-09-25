@@ -7,8 +7,8 @@ import { CommonService }     from '../../services/common.service';
 
 @Component({
   selector: 'app-person',
-  templateUrl: './html/person.component.html',
-  styleUrls: ['./css/person.component.css']
+  templateUrl: './person.component.html',
+  styleUrls: []
 })
 export class PersonComponent implements OnInit {
   id: number;

@@ -4,8 +4,8 @@ import { MediaChange, MediaObserver }              from '@angular/flex-layout';
 
 @Component({
   selector: 'calendar',
-  templateUrl: './html/calendar.component.html',
-  styleUrls: ['./css/calendar.component.css']
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
   @Output() select = new EventEmitter();

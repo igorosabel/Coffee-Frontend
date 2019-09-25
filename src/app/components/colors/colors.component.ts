@@ -4,8 +4,8 @@ import { CommonService }             from '../../services/common.service';
 
 @Component({
   selector: 'colors',
-  templateUrl: './html/colors.component.html',
-  styleUrls: ['./css/colors.component.css']
+  template: '',
+  styleUrls: []
 })
 export class ColorsComponent implements OnInit {
   css: string = '';

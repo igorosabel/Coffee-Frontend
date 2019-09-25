@@ -7,8 +7,8 @@ import { Person }                 from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-edit-person',
-  templateUrl: './html/edit-person.component.html',
-  styleUrls: ['./css/edit-person.component.css']
+  templateUrl: './edit-person.component.html',
+  styleUrls: []
 })
 export class EditPersonComponent implements OnInit {
   id: number;

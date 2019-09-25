@@ -7,8 +7,8 @@ import { Person }            from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-add-person',
-  templateUrl: './html/add-person.component.html',
-  styleUrls: ['./css/add-person.component.css']
+  templateUrl: './add-person.component.html',
+  styleUrls: []
 })
 export class AddPersonComponent implements OnInit {
   name: string = '';
@@ -48,5 +48,4 @@ export class AddPersonComponent implements OnInit {
       }
     });
   }
-
 }

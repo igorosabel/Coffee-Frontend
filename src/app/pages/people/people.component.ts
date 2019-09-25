@@ -7,8 +7,8 @@ import {  PeopleResult }                from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-people',
-  templateUrl: './html/people.component.html',
-  styleUrls: ['./css/people.component.css']
+  templateUrl: './people.component.html',
+  styleUrls: []
 })
 export class PeopleComponent implements OnInit {
   @ViewChild('colors', { static: true }) colors : ColorsComponent;
@@ -39,7 +39,7 @@ export class PeopleComponent implements OnInit {
     this.colors.loadColors(this.peopleList);
   }
 
-  editPerson(id){
+  editPerson(id) {
 	  this.router.navigate(['/edit-person', id]);
   }
 }

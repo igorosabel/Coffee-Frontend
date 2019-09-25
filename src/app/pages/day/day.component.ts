@@ -7,8 +7,8 @@ import { CalendarDay, DialogOptions, PeopleResult } from '../../interfaces/inter
 
 @Component({
   selector: 'detail',
-  templateUrl: './html/day.component.html',
-  styleUrls: ['./css/day.component.css']
+  templateUrl: './day.component.html',
+  styleUrls: []
 })
 export class DayComponent implements OnInit {
   day: CalendarDay = {day: 0, month: 0, year: 0};

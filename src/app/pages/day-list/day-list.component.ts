@@ -6,8 +6,8 @@ import { MonthDayResult, CalendarDay } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-day-list',
-  templateUrl: './html/day-list.component.html',
-  styleUrls: ['./css/day-list.component.css']
+  templateUrl: './day-list.component.html',
+  styleUrls: []
 })
 export class DayListComponent implements OnInit {
   day: CalendarDay = {day: 0, month: 0, year: 0};
