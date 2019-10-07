@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router }                       from '@angular/router';
+import { SwPush }                       from '@angular/service-worker';
 import { ColorsComponent }              from '../../components/colors/colors.component';
 import { CalendarComponent }            from '../../components/calendar/calendar.component';
 import { ApiService }                   from '../../services/api.service';
@@ -22,8 +23,12 @@ export class CoffeeComponent implements OnInit {
   peopleList: PeopleResult[] = [];
   sortField: string = 'percentage';
   sortOrder: string = 'down';
+  
+  sub: PushSubscription;
+  readonly VAPID_PUBLIC_KEY = "BJmNESR66LzKi6Br7STuqAZaCE47ZAnczDDJbrd3uMP-TsFbIuq2XpE1eVQF2JaygS80q6YG5Bkuxgb0sS5q1Wo";
+  // {"publicKey":"BJmNESR66LzKi6Br7STuqAZaCE47ZAnczDDJbrd3uMP-TsFbIuq2XpE1eVQF2JaygS80q6YG5Bkuxgb0sS5q1Wo","privateKey":"5XlB5qZeYEQXWAUZx4mfHSLHqYdfLfqJ12pu9UVDL4Y"}
 
-  constructor(private as: ApiService, private dss: DataShareService, private router: Router) {
+  constructor(private as: ApiService, private dss: DataShareService, private router: Router, private swPush: SwPush) {
     this.dss.setSaveLocalStorage(true);
   }
 
@@ -159,5 +164,23 @@ export class CoffeeComponent implements OnInit {
 
   goToPerson(id) {
     this.router.navigate(['/person', id]);
+  }
+  
+  subscribeToNotifications() {
+    console.log('subscribe');
+    console.log(this.swPush);
+  
+    this.swPush.requestSubscription({
+      serverPublicKey: this.VAPID_PUBLIC_KEY
+    })
+    .then(sub => {
+      this.sub = sub;
+      console.log("Notification Subscription: ", sub);
+      /*this.newsletterService.addPushSubscriber(sub).subscribe(
+          () => console.log('Sent push subscription object to server.'),
+          err =>  console.log('Could not send subscription object to server, reason: ', err)
+      );*/
+      })
+      .catch(err => console.error("Could not subscribe to notifications", err));
   }
 }
