@@ -9,20 +9,20 @@ export class CalendarComponent implements OnInit {
 	@Output() select = new EventEmitter();
 	@Output() change = new EventEmitter();
 
-	months = ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'];
-	//monthsShort = ['Urt','Ots','Mar','Api','Mai','Eka','Uzt','Abu','Ira','Urr','Aza','Abe'];
-	days = ['Astelehena','Asteartea','Asteazkena','Osteguna','Ostirala','Larunbata','Igandea'];
-	//daysShort = ['Asl','Ast','Asz','Ost','Osi','Lar','Iga'];
+	months: string[] = ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'];
+	days: string[] = ['Astelehena','Asteartea','Asteazkena','Osteguna','Ostirala','Larunbata','Igandea'];
+	daysShort: string[] = ['Asl','Ast','Asz','Ost','Osi','Lar','Iga'];
 
-	day = null;
-	month = null;
-	year = null;
+	day: number = null;
+	month: number = null;
+	year: number = null;
 	events = [];
 	marked = {};
 
-	currentMonth = null;
-	currentYear = null;
-	headerDays = [];
+	currentMonth: string = null;
+	currentYear: number = null;
+	headerDays: string[] = [];
+	headerDaysShort: string[] = [];
 	rows = [];
 
 	constructor() {}
@@ -73,12 +73,10 @@ export class CalendarComponent implements OnInit {
 	}
 
 	header() {
-		//const months = this.isMobile ? this.monthsShort : this.months;
-		//const days   = this.isMobile ? this.daysShort   : this.days;
-
-		this.currentMonth = this.months[this.month];
-		this.currentYear = this.year;
-		this.headerDays = this.days;
+		this.currentMonth    = this.months[this.month];
+		this.currentYear     = this.year;
+		this.headerDays      = this.days;
+		this.headerDaysShort = this.daysShort;
 	}
 
 	otherMonthDay(day) {

@@ -4,8 +4,11 @@
 		{{ currentMonth }}  {{ currentYear }}
 		<a href="#" class="calendar-next" (click)="nextMonth($event)">&gt;</a>
 	</div>
-	<div class="calendar-row">
+	<div class="calendar-row calendar-row-desktop">
 		<div *ngFor="let day of headerDays" class="calendar-header-day">{{ day }}</div>
+	</div>
+	<div class="calendar-row calendar-row-mobile">
+		<div *ngFor="let day of headerDaysShort" class="calendar-header-day">{{ day }}</div>
 	</div>
 	<div class="calendar-table">
 		<div *ngFor="let row of rows" class="calendar-row">
