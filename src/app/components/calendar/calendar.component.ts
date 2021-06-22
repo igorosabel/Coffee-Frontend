@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
 	selector: 'calendar',
 	templateUrl: './calendar.component.html',
-	styleUrls: ['./calendar.component.css']
+	styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
 	@Output() select = new EventEmitter();

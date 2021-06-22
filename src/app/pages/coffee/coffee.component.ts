@@ -11,7 +11,7 @@ import { MonthDayResult, PeopleResult } from '../../interfaces/interfaces';
 @Component({
   selector: 'coffee',
   templateUrl: './coffee.component.html',
-  styleUrls: ['./coffee.component.css']
+  styleUrls: ['./coffee.component.scss']
 })
 export class CoffeeComponent implements OnInit {
   @ViewChild('colors', { static: true }) colors : ColorsComponent;
@@ -23,7 +23,7 @@ export class CoffeeComponent implements OnInit {
   peopleList: PeopleResult[] = [];
   sortField: string = 'percentage';
   sortOrder: string = 'down';
-  
+
   sub: PushSubscription;
   readonly VAPID_PUBLIC_KEY = "BJmNESR66LzKi6Br7STuqAZaCE47ZAnczDDJbrd3uMP-TsFbIuq2XpE1eVQF2JaygS80q6YG5Bkuxgb0sS5q1Wo";
   // {"publicKey":"BJmNESR66LzKi6Br7STuqAZaCE47ZAnczDDJbrd3uMP-TsFbIuq2XpE1eVQF2JaygS80q6YG5Bkuxgb0sS5q1Wo","privateKey":"5XlB5qZeYEQXWAUZx4mfHSLHqYdfLfqJ12pu9UVDL4Y"}
@@ -165,11 +165,11 @@ export class CoffeeComponent implements OnInit {
   goToPerson(id) {
     this.router.navigate(['/person', id]);
   }
-  
+
   subscribeToNotifications() {
     console.log('subscribe');
     console.log(this.swPush);
-  
+
     this.swPush.requestSubscription({
       serverPublicKey: this.VAPID_PUBLIC_KEY
     })
