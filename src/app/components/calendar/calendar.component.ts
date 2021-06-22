@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'calendar',
 	templateUrl: './calendar.component.html',
 	styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent {
 	@Output() select = new EventEmitter();
 	@Output() change = new EventEmitter();
 
@@ -26,8 +26,6 @@ export class CalendarComponent implements OnInit {
 	rows = [];
 
 	constructor() {}
-
-	ngOnInit() {}
 
 	selectDay(d) {
 		this.select.emit({day: d.day, month: this.month+1, year: this.year});

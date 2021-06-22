@@ -1,99 +1,99 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 *{
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-html, body, material-app, mat-sidenav-container{
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+html, body, material-app, mat-sidenav-container {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
 }
 
-.row{
-  display: flex;
+.row {
+	display: flex;
 }
 
-.flex{
-  flex: 1 1 auto;
+.flex {
+	flex: 1 1 auto;
 }
 
-.flex-end{
-  justify-content: flex-end;
+.flex-end {
+	justify-content: flex-end;
 }
 
-.card-95{
-  width: 95%;
-  margin: 16px auto;
+.card-95 {
+	width: 95%;
+	margin: 16px auto;
 }
 
-.card-bottom{
-  margin-bottom: 76px;
+.card-bottom {
+	margin-bottom: 76px;
 }
 
-.col{
-  display: inline-block;
-  height: 100%;
+.col {
+	display: inline-block;
+	height: 100%;
 }
 
-.col-25{
-  width: 28%;
+.col-25 {
+	width: 28%;
 }
 
-.col-50{
-  width: 40%;
+.col-50 {
+	width: 40%;
 }
 
-.center{
-  text-align: center;
+.center {
+	text-align: center;
 }
 
-.sort-field{
-  color: #000;
-  text-decoration: none;
-  display: block;
+.sort-field {
+	color: #000;
+	text-decoration: none;
+	display: block;
 }
 
-mat-nav-list a{
-  width: 100%;
-  height: 100%;
+mat-nav-list a {
+	width: 100%;
+	height: 100%;
 }
 
-mat-list-item a{
-  outline: 0;
+mat-list-item a {
+	outline: 0;
 }
 
-.content{
-  padding: 16px;
+.content {
+	padding: 16px;
 }
 
-.full-width{
-  width: 100%;
+.full-width {
+	width: 100%;
 }
 
-.width-80{
-  width: 80%;
+.width-80 {
+	width: 80%;
 }
 
-.saving-bg{
-  display: inline-block;
-  width: 40px;
-  background-color: #fff;
-  text-align: center;
-  border-radius: 4px;
-  line-height: 40px;
+.saving-bg {
+	display: inline-block;
+	width: 40px;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 4px;
+	line-height: 40px;
+
+	& > img {
+		width: 24px;
+		vertical-align: middle;
+	}
 }
 
-.saving-bg > img{
-  width: 24px;
-  vertical-align: middle;
-}
-
-.fab-right{
-  top: auto !important;
-  right: 20px !important;
-  bottom: 10px !important;
-  left: auto !important;
-  position: fixed !important;
+.fab-right {
+	top: auto !important;
+	right: 20px !important;
+	bottom: 10px !important;
+	left: auto !important;
+	position: fixed !important;
 }
