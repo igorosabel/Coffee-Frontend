@@ -143,5 +143,6 @@ export class CalendarComponent {
 
 			this.rows.push(days);
 		}
+		console.log(this.rows);
 	}
 }

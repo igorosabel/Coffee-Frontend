@@ -6,7 +6,7 @@ import { CalendarComponent }            from '../../components/calendar/calendar
 import { ApiService }                   from '../../services/api.service';
 import { DataShareService }             from '../../services/data-share.service';
 import { CalendarDay }                  from '../../interfaces/interfaces';
-import { MonthDayResult, PeopleResult } from '../../interfaces/interfaces';
+import { MonthDayResultInterface, PeopleResult } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'coffee',
@@ -18,7 +18,7 @@ export class CoffeeComponent implements OnInit {
   @ViewChild('calendar', { static: true }) calendar : CalendarComponent;
 
   data: CalendarDay = {day: 0, month: 0, year: 0};
-  events: MonthDayResult[] = [];
+  events: MonthDayResultInterface[] = [];
   people = {};
   peopleList: PeopleResult[] = [];
   sortField: string = 'percentage';

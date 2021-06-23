@@ -2,7 +2,7 @@ import { Component, OnInit }           from '@angular/core';
 import { Router }                      from '@angular/router';
 import { ApiService }                  from '../../services/api.service';
 import { DataShareService }            from '../../services/data-share.service';
-import { MonthDayResult, CalendarDay } from '../../interfaces/interfaces';
+import { MonthDayResultInterface, CalendarDay } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-day-list',
@@ -11,9 +11,9 @@ import { MonthDayResult, CalendarDay } from '../../interfaces/interfaces';
 })
 export class DayListComponent implements OnInit {
   day: CalendarDay = {day: 0, month: 0, year: 0};
-  events: MonthDayResult[] = [];
+  events: MonthDayResultInterface[] = [];
   people = {};
-  selectedDay: MonthDayResult;
+  selectedDay: MonthDayResultInterface;
 
   constructor(private as: ApiService, private dss: DataShareService, private router: Router) {
     this.dss.setSaveLocalStorage(true);
