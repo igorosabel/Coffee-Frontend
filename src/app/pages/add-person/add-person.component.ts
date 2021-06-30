@@ -15,9 +15,7 @@ export class AddPersonComponent {
 	color: string = '#ffffff';
 	sending: boolean = false;
 
-	constructor(private as: ApiService, private dss: DataShareService, private dialog: DialogService, private router: Router) {
-		this.dss.setSaveLocalStorage(true);
-	}
+	constructor(private as: ApiService, private dss: DataShareService, private dialog: DialogService, private router: Router) {}
 
 	save() {
 		if (this.name==='') {

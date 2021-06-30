@@ -15,9 +15,7 @@ export class DayListComponent implements OnInit {
 	people = {};
 	selectedDay: MonthDayResultInterface;
 
-	constructor(private as: ApiService, private dss: DataShareService, private router: Router) {
-		this.dss.setSaveLocalStorage(true);
-	}
+	constructor(private as: ApiService, private dss: DataShareService, private router: Router) {}
 
 	ngOnInit() {
 		this.day = <CalendarDay> this.dss.getGlobal('day');

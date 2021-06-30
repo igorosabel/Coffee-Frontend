@@ -19,9 +19,7 @@ export class DayComponent implements OnInit {
 	payed: number = null;
 	sending: boolean = false;
 
-	constructor(private as: ApiService, private dss: DataShareService, private dialog: DialogService, private router: Router) {
-		this.dss.setSaveLocalStorage(true);
-	}
+	constructor(private as: ApiService, private dss: DataShareService, private dialog: DialogService, private router: Router) {}
 
 	ngOnInit() {
 		this.idCoffee = this.dss.getGlobal('idDay');
