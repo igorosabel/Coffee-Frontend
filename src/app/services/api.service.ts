@@ -7,7 +7,7 @@ import {
 	PeopleListResult,
 	CoffeeData,
 	StatusResult,
-	CalendarDay,
+	CalendarDayInterface,
 	DayData,
 	Person,
 	PersonResult,
@@ -32,7 +32,7 @@ export class ApiService {
 		return this.http.post<StatusResult>(this.apiUrl + 'coffee/save', coffeData);
 	}
 
-	getDay(day: CalendarDay): Observable<DayData> {
+	getDay(day: CalendarDayInterface): Observable<DayData> {
 		return this.http.post<DayData>(this.apiUrl + 'get-day', day);
 	}
 

@@ -1,8 +1,9 @@
-import { Component, OnInit }           from '@angular/core';
-import { Router }                      from '@angular/router';
-import { ApiService }                  from '../../services/api.service';
-import { DataShareService }            from '../../services/data-share.service';
-import { MonthDayResultInterface, CalendarDay } from '../../interfaces/interfaces';
+import { Component, OnInit }       from '@angular/core';
+import { Router }                  from '@angular/router';
+import { CalendarDay }             from '../../model/calendar-day.class';
+import { ApiService }              from '../../services/api.service';
+import { DataShareService }        from '../../services/data-share.service';
+import { MonthDayResultInterface } from '../../interfaces/interfaces';
 
 @Component({
 	selector: 'app-day-list',
@@ -10,7 +11,7 @@ import { MonthDayResultInterface, CalendarDay } from '../../interfaces/interface
 	styleUrls: []
 })
 export class DayListComponent implements OnInit {
-	day: CalendarDay = {day: 0, month: 0, year: 0};
+	day: CalendarDay = new CalendarDay(0, 0, 0);
 	events: MonthDayResultInterface[] = [];
 	people = {};
 	selectedDay: MonthDayResultInterface;

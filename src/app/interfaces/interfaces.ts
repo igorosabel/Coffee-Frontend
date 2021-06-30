@@ -31,7 +31,7 @@ export interface PeopleResult {
 	did_go: boolean;
 }
 
-export interface CalendarDay {
+export interface CalendarDayInterface {
 	day: number;
 	month: number;
 	year: number;

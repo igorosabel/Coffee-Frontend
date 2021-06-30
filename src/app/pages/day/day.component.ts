@@ -1,9 +1,10 @@
-import { Component, OnInit }                        from '@angular/core';
-import { Router }                                   from '@angular/router';
-import { ApiService }                               from '../../services/api.service';
-import { DataShareService }                         from '../../services/data-share.service';
-import { DialogService }                            from '../../services/dialog.service';
-import { CalendarDay, DialogOptions, PeopleResult } from '../../interfaces/interfaces';
+import { Component, OnInit }           from '@angular/core';
+import { Router }                      from '@angular/router';
+import { CalendarDay }                 from '../../model/calendar-day.class';
+import { ApiService }                  from '../../services/api.service';
+import { DataShareService }            from '../../services/data-share.service';
+import { DialogService }               from '../../services/dialog.service';
+import { DialogOptions, PeopleResult } from '../../interfaces/interfaces';
 
 @Component({
 	selector: 'detail',
@@ -11,7 +12,7 @@ import { CalendarDay, DialogOptions, PeopleResult } from '../../interfaces/inter
 	styleUrls: []
 })
 export class DayComponent implements OnInit {
-	day: CalendarDay = {day: 0, month: 0, year: 0};
+	day: CalendarDay = new CalendarDay();
 	idCoffee: number = 0;
 	special: boolean = false;
 	people = {};
@@ -23,12 +24,12 @@ export class DayComponent implements OnInit {
 
 	ngOnInit() {
 		this.idCoffee = this.dss.getGlobal('idDay');
-		this.day = <CalendarDay> this.dss.getGlobal('day');
+		this.day = this.dss.getGlobal('day');
 		const date = new Date(this.day.year, this.day.month-1, this.day.day);
 		this.special = (date.getDay()===5);
 
 		if (this.idCoffee===null) {
-			this.as.getDay(this.day).subscribe(result => {
+			this.as.getDay(this.day.toInterface()).subscribe(result => {
 				this.idCoffee = result.id_coffee;
 				this.payed = result.id_pay;
 

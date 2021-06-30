@@ -1,10 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router }                       from '@angular/router';
+import { CalendarDay }                  from '../../model/calendar-day.class';
 import { ColorsComponent }              from '../../components/colors/colors.component';
 import { CalendarComponent }            from '../../components/calendar/calendar.component';
 import { ApiService }                   from '../../services/api.service';
 import { DataShareService }             from '../../services/data-share.service';
-import { CalendarDay }                  from '../../interfaces/interfaces';
+import { ClassMapperService }           from '../../services/class-mapper.service';
 import { MonthDayResultInterface, PeopleResult } from '../../interfaces/interfaces';
 
 @Component({
@@ -16,22 +17,23 @@ export class CoffeeComponent implements OnInit {
 	@ViewChild('colors', { static: true }) colors : ColorsComponent;
 	@ViewChild('calendar', { static: true }) calendar : CalendarComponent;
 
-	data: CalendarDay = {day: 0, month: 0, year: 0};
+	data: CalendarDay = new CalendarDay();
 	events: MonthDayResultInterface[] = [];
 	people = {};
 	peopleList: PeopleResult[] = [];
 	sortField: string = 'percentage';
 	sortOrder: string = 'down';
 
-	constructor(private as: ApiService, private dss: DataShareService, private router: Router) {}
+	constructor(
+		private as: ApiService,
+		private dss: DataShareService,
+		private cms: ClassMapperService,
+		private router: Router
+	) {}
 
 	ngOnInit() {
 		const d = new Date();
-		this.data = {
-			day: d.getDate(),
-			month: d.getMonth(),
-			year: d.getFullYear()
-		};
+		this.data = new CalendarDay(d.getDate(), d.getMonth(), d.getFullYear());
 		if (this.dss.getGlobal('data') === null) {
 			this.dss.setGlobal('data', this.data);
 		}
@@ -43,7 +45,7 @@ export class CoffeeComponent implements OnInit {
 			}
 		}
 		if (this.dss.getGlobal('events') === null) {
-			this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
+			this.as.getMonth(this.data.month + 1, this.data.year).subscribe(result => {
 				this.events = result.list;
 				this.dss.setGlobal('events', this.events);
 				this.startCalendar();
