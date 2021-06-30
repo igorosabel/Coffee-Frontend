@@ -1,12 +1,14 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router }                       from '@angular/router';
 import { CalendarDay }                  from '../../model/calendar-day.class';
+import { MonthDayResult }               from '../../model/month-day-result.class';
+import { PeopleResult }                 from '../../model/people-result.class';
 import { ColorsComponent }              from '../../components/colors/colors.component';
 import { CalendarComponent }            from '../../components/calendar/calendar.component';
 import { ApiService }                   from '../../services/api.service';
 import { DataShareService }             from '../../services/data-share.service';
 import { ClassMapperService }           from '../../services/class-mapper.service';
-import { MonthDayResultInterface, PeopleResult } from '../../interfaces/interfaces';
+import { MonthDayResultInterface }      from '../../interfaces/interfaces';
 
 @Component({
 	selector: 'coffee',
@@ -18,7 +20,7 @@ export class CoffeeComponent implements OnInit {
 	@ViewChild('calendar', { static: true }) calendar : CalendarComponent;
 
 	data: CalendarDay = new CalendarDay();
-	events: MonthDayResultInterface[] = [];
+	events: MonthDayResult[] = [];
 	people = {};
 	peopleList: PeopleResult[] = [];
 	sortField: string = 'percentage';
@@ -46,7 +48,8 @@ export class CoffeeComponent implements OnInit {
 		}
 		if (this.dss.getGlobal('events') === null) {
 			this.as.getMonth(this.data.month + 1, this.data.year).subscribe(result => {
-				this.events = result.list;
+				const resultData = this.cms.getMonth(result);
+				this.events = resultData.list;
 				this.dss.setGlobal('events', this.events);
 				this.startCalendar();
 			});
@@ -57,7 +60,9 @@ export class CoffeeComponent implements OnInit {
 		}
 		if (this.dss.getGlobal('people') === null) {
 			this.as.getPeople().subscribe(result => {
-				this.people = result.people;
+				console.log(result);
+				this.people = this.cms.getPeople(result.people);
+				console.log(this.people);
 				this.dss.setGlobal('people', this.people);
 				this.loadPeopleList();
 			});
@@ -117,7 +122,8 @@ export class CoffeeComponent implements OnInit {
 		this.dss.setGlobal('data', this.data);
 
 		this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
-			this.events = result.list;
+			const resultData = this.cms.getMonth(result);
+			this.events = resultData.list;
 			this.dss.setGlobal('events', this.events);
 			this.startCalendar();
 		});

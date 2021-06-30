@@ -17,10 +17,10 @@ export interface DayResultInterface {
 }
 
 export interface PeopleListResult {
-	[key: string]: PeopleResult
+	[key: string]: PeopleResultInterface;
 }
 
-export interface PeopleResult {
+export interface PeopleResultInterface {
 	id: number;
 	name: string;
 	num_coffee: number;
@@ -66,7 +66,7 @@ export interface DayData {
 	id_coffee: number;
 	special: boolean;
 	id_pay: number;
-	list: PeopleResult[];
+	list: PeopleResultInterface[];
 }
 
 export interface Person {

@@ -1,10 +1,11 @@
-import { Component, OnInit }           from '@angular/core';
-import { Router }                      from '@angular/router';
-import { CalendarDay }                 from '../../model/calendar-day.class';
-import { ApiService }                  from '../../services/api.service';
-import { DataShareService }            from '../../services/data-share.service';
-import { DialogService }               from '../../services/dialog.service';
-import { DialogOptions, PeopleResult } from '../../interfaces/interfaces';
+import { Component, OnInit } from '@angular/core';
+import { Router }            from '@angular/router';
+import { CalendarDay }       from '../../model/calendar-day.class';
+import { PeopleResult }      from '../../model/people-result.class';
+import { ApiService }        from '../../services/api.service';
+import { DataShareService }  from '../../services/data-share.service';
+import { DialogService }     from '../../services/dialog.service';
+import { DialogOptions }     from '../../interfaces/interfaces';
 
 @Component({
 	selector: 'detail',

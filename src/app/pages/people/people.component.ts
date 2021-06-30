@@ -3,7 +3,7 @@ import { Router }                       from '@angular/router';
 import { ColorsComponent }              from '../../components/colors/colors.component';
 import { ApiService }                   from '../../services/api.service';
 import { DataShareService }             from '../../services/data-share.service';
-import {  PeopleResult }                from '../../interfaces/interfaces';
+import { PeopleResult }                 from '../../model/people-result.class';
 
 @Component({
 	selector: 'app-people',

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PeopleResult } from '../interfaces/interfaces';
+import { PeopleResult } from '../model/people-result.class';
 
 @Pipe({
 	name: 'percentageTotal'

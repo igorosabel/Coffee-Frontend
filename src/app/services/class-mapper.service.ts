@@ -3,11 +3,13 @@ import { CalendarDay }    from '../model/calendar-day.class';
 import { MonthResult }    from '../model/month-result.class';
 import { MonthDayResult } from '../model/month-day-result.class';
 import { DayResult }      from '../model/day-result.class';
-
+import { PeopleResult }   from '../model/people-result.class';
 import {
 	CalendarDayInterface,
 	MonthResultInterface,
-	MonthDayResultInterface
+	MonthDayResultInterface,
+	DayResultInterface,
+	PeopleResultInterface
 } from '../interfaces/interfaces';
 
 @Injectable({
@@ -43,12 +45,43 @@ export class ClassMapperService {
 		const dayList: DayResult[] = [];
 
 		for (let i of d.list) {
-			
+			dayList.push( this.getDay(i) );
 		}
 
 		return new MonthDayResult(
 			d.d,
 			dayList
+		);
+	}
+
+	getDay(i: DayResultInterface): DayResult {
+		return new DayResult(
+			i.id,
+			i.id_person,
+			i.people
+		);
+	}
+
+	getPeople(list: any): PeopleResult[] {
+		const people: PeopleResult[] = [];
+console.log(list);
+		for (let p of list) {
+			people.push( this.getPeopleResult(p) );
+		}
+
+		return people;
+	}
+
+	getPeopleResult(p: PeopleResultInterface): PeopleResult {
+		return new PeopleResult(
+			p.id,
+			p.name,
+			p.num_coffee,
+			p.num_pay,
+			p.num_special,
+			p.num_special_pay,
+			p.color,
+			p.did_go
 		);
 	}
 }
