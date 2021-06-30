@@ -1,57 +1,57 @@
 <colors #colors></colors>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav class="example-sidenav">
-    <mat-toolbar color="primary">
-      Kafeak
-    </mat-toolbar>
-    <mat-nav-list>
-      <mat-list-item>
-        <a routerLink="/people">
-          <mat-icon matListIcon>people</mat-icon>
-          Kafezaleak
-        </a>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
+	<mat-sidenav #sidenav class="example-sidenav">
+		<mat-toolbar color="primary">
+			Kafeak
+		</mat-toolbar>
+		<mat-nav-list>
+			<mat-list-item>
+				<a routerLink="/people">
+					<mat-icon matListIcon>people</mat-icon>
+					Kafezaleak
+				</a>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-sidenav>
 
-  <mat-toolbar color="primary">
-    <button mat-icon-button (click)="sidenav.open()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Kafeak</span>
-    <span class="flex"></span>
-    <button mat-icon-button (click)="newDay()">
-      <mat-icon>add_circle</mat-icon>
-    </button>
-  </mat-toolbar>
-  
-  <calendar #calendar (select)="selectDay($event)" (change)="changeMonth($event)"></calendar>
-  
-  <mat-card class="card-95">
-    <mat-card-subtitle>Kafezaleak</mat-card-subtitle>
-    <div>
-      <div class="col col-50">&nbsp;</div>
-      <div class="col col-25 center">
-        <a class="sort-field" href="#" (click)="changeOrder('percentage',$event)">Ehunekoa<mat-icon *ngIf="sortField=='percentage'">keyboard_arrow_{{sortOrder}}</mat-icon></a>
-      </div>
-      <div class="col col-25 center">
-        <a class="sort-field" href="#" (click)="changeOrder('special',$event)">Ostiralak<mat-icon *ngIf="sortField=='special'">keyboard_arrow_{{sortOrder}}</mat-icon></a>
-      </div>
-    </div>
-    <mat-nav-list>
-      <mat-list-item *ngFor="let person of peopleList">
-        <a (click)="goToPerson(person.id)">
-          <div class="col col-50">
-            <div class="person_{{ person.id }}">{{ person.name | urldecode }}</div>
-          </div>
-          <div class="col col-25 center">{{ person | percentageTotal }}</div>
-          <div class="col col-25 center">{{ person | percentageFridays }}</div>
-        </a>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-card>
-  
-  <button (click)="subscribeToNotifications()">proba</button>
+	<mat-toolbar color="primary">
+		<button mat-icon-button (click)="sidenav.open()">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<span>Kafeak</span>
+		<span class="flex"></span>
+		<button mat-icon-button (click)="newDay()">
+			<mat-icon>add_circle</mat-icon>
+		</button>
+	</mat-toolbar>
+
+	<calendar #calendar (select)="selectDay($event)" (change)="changeMonth($event)"></calendar>
+
+	<mat-card class="card-95">
+		<mat-card-subtitle>Kafezaleak</mat-card-subtitle>
+		<div>
+			<div class="col col-50">&nbsp;</div>
+			<div class="col col-25 center">
+				<a class="sort-field" href="#" (click)="changeOrder('percentage',$event)">Ehunekoa<mat-icon *ngIf="sortField=='percentage'">keyboard_arrow_{{sortOrder}}</mat-icon></a>
+			</div>
+			<div class="col col-25 center">
+				<a class="sort-field" href="#" (click)="changeOrder('special',$event)">Ostiralak<mat-icon *ngIf="sortField=='special'">keyboard_arrow_{{sortOrder}}</mat-icon></a>
+			</div>
+		</div>
+		<mat-nav-list>
+			<mat-list-item *ngFor="let person of peopleList">
+				<a (click)="goToPerson(person.id)">
+					<div class="col col-50">
+						<div class="person_{{ person.id }}">{{ person.name | urldecode }}</div>
+					</div>
+					<div class="col col-25 center">{{ person | percentageTotal }}</div>
+					<div class="col col-25 center">{{ person | percentageFridays }}</div>
+				</a>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-card>
+
+	<button (click)="subscribeToNotifications()">proba</button>
 
 </mat-sidenav-container>

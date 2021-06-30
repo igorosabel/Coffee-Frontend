@@ -39,35 +39,35 @@ export class CoffeeComponent implements OnInit {
 			month: d.getMonth(),
 			year: d.getFullYear()
 		};
-		if (this.dss.getGlobal('data') === null){
+		if (this.dss.getGlobal('data') === null) {
 			this.dss.setGlobal('data', this.data);
 		}
-		else{
+		else {
 			const checkData = this.dss.getGlobal('data');
-			if (this.data.day!==checkData.day || this.data.month!==checkData.month || this.data.year!==checkData.year){
+			if (this.data.day!==checkData.day || this.data.month!==checkData.month || this.data.year!==checkData.year) {
 				this.dss.resetGlobals();
 				this.dss.setGlobal('data', this.data);
 			}
 		}
-		if (this.dss.getGlobal('events') === null){
+		if (this.dss.getGlobal('events') === null) {
 			this.as.getMonth(this.data.month+1, this.data.year).subscribe(result => {
 				this.events = result.list;
 				this.dss.setGlobal('events', this.events);
 				this.startCalendar();
 			});
 		}
-		else{
+		else {
 			this.events = this.dss.getGlobal('events');
 			this.startCalendar();
 		}
-		if (this.dss.getGlobal('people') === null){
+		if (this.dss.getGlobal('people') === null) {
 			this.as.getPeople().subscribe(result => {
 				this.people = result.people;
 				this.dss.setGlobal('people', this.people);
 				this.loadPeopleList();
 			});
 		}
-		else{
+		else {
 			this.people = this.dss.getGlobal('people');
 			this.loadPeopleList();
 		}
@@ -80,7 +80,7 @@ export class CoffeeComponent implements OnInit {
 	}
 
 	loadPeopleList() {
-		for(let person in this.people){
+		for(let person in this.people) {
 			this.peopleList.push( this.people[person] );
 		}
 		this.colors.loadColors(this.peopleList);
@@ -100,14 +100,14 @@ export class CoffeeComponent implements OnInit {
 	selectDay(ev) {
 		const day = this.events.find(function (obj) { return obj.d === ev.day; });
 		this.dss.setGlobal('day', ev);
-		if (day && day.list.length>1){
+		if (day && day.list.length>1) {
 			this.router.navigate(['/day-list']);
 		}
-		else{
-			if (day){
+		else {
+			if (day) {
 				this.dss.setGlobal('idDay', day.list[0].id);
 			}
-			else{
+			else {
 				this.dss.setGlobal('idDay', null);
 			}
 			this.router.navigate(['/day']);
@@ -129,26 +129,26 @@ export class CoffeeComponent implements OnInit {
 	}
 
 	listOrder() {
-		if (this.sortField=='percentage'){
-			if (this.sortOrder=='down'){
-				this.peopleList.sort(function(a, b) {
+		if (this.sortField=='percentage') {
+			if (this.sortOrder=='down') {
+				this.peopleList.sort((a, b) => {
 					return (b.num_pay / b.num_coffee) - (a.num_pay / a.num_coffee);
 				});
 			}
-			if (this.sortOrder=='up'){
-				this.peopleList.sort(function(a, b) {
+			if (this.sortOrder=='up') {
+				this.peopleList.sort((a, b) => {
 					return (a.num_pay / a.num_coffee) - (b.num_pay / b.num_coffee);
 				});
 			}
 		}
-		if (this.sortField=='special'){
-			if (this.sortOrder=='down'){
-				this.peopleList.sort(function(a, b) {
+		if (this.sortField=='special') {
+			if (this.sortOrder=='down') {
+				this.peopleList.sort((a, b) => {
 					return (b.num_special_pay / b.num_special) - (a.num_special_pay / a.num_special);
 				});
 			}
-			if (this.sortOrder=='up'){
-				this.peopleList.sort(function(a, b) {
+			if (this.sortOrder=='up') {
+				this.peopleList.sort((a, b) => {
 					return (a.num_special_pay / a.num_special) - (b.num_special_pay / b.num_special);
 				});
 			}
@@ -175,12 +175,12 @@ export class CoffeeComponent implements OnInit {
 		})
 		.then(sub => {
 			this.sub = sub;
-			console.log("Notification Subscription: ", sub);
+			console.log('Notification Subscription: ', sub);
 			/*this.newsletterService.addPushSubscriber(sub).subscribe(
 				() => console.log('Sent push subscription object to server.'),
 				err =>  console.log('Could not send subscription object to server, reason: ', err)
 			);*/
 		})
-		.catch(err => console.error("Could not subscribe to notifications", err));
+		.catch(err => console.error('Could not subscribe to notifications', err));
 	}
 }

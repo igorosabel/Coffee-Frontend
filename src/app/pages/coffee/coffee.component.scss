@@ -1,12 +1,12 @@
-.mat-sidenav{
-  max-width: 400px;
-  width: 320px;
+.mat-sidenav {
+	max-width: 400px;
+	width: 320px;
 }
 
 @media screen and (max-width: 456px) {
-  .mat-sidenav {
-      width: calc(100% - 56px);
-      min-width: calc(100% - 56px);
-      max-width: calc(100% - 56px);
-  }
+	.mat-sidenav {
+		width: calc(100% - 56px);
+		min-width: calc(100% - 56px);
+		max-width: calc(100% - 56px);
+	}
 }

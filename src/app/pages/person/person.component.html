@@ -1,19 +1,19 @@
 <mat-toolbar color="primary" [ngStyle]="{'color': headerColor, 'background-color':color}">
-  <button mat-icon-button routerLink="/">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <span>{{ name }}</span>
+	<button mat-icon-button routerLink="/">
+		<mat-icon>arrow_back</mat-icon>
+	</button>
+	<span>{{ name }}</span>
 </mat-toolbar>
 
 <mat-card class="card-95">
-  <mat-card-title>Kafe zerrenda</mat-card-title>
-  <mat-list>
-	<mat-list-item *ngFor="let coffee of coffees">
-	  {{ coffee.y }}-{{ coffee.m | formatNum }}-{{ coffee.d | formatNum }}
-	  <span *ngIf="coffee.special"> (Ostirala)</span>
-	  <span class="flex"></span>
-	  <mat-checkbox [(ngModel)]="coffee.pay" disabled="true"></mat-checkbox>
-	</mat-list-item>
-	<mat-list-item *ngIf="coffees.length==0">Oraindik ez da inoiz joan kafera</mat-list-item>
-  </mat-list>
+	<mat-card-title>Kafe zerrenda</mat-card-title>
+	<mat-list>
+		<mat-list-item *ngFor="let coffee of coffees">
+			{{ coffee.y }}-{{ coffee.m | formatNum }}-{{ coffee.d | formatNum }}
+			<span *ngIf="coffee.special"> (Ostirala)</span>
+			<span class="flex"></span>
+			<mat-checkbox [(ngModel)]="coffee.pay" disabled="true"></mat-checkbox>
+		</mat-list-item>
+		<mat-list-item *ngIf="coffees.length==0">Oraindik ez da inoiz joan kafera</mat-list-item>
+	</mat-list>
 </mat-card>

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-coffee-list',
-  templateUrl: './coffee-list.component.html',
-  styleUrls: []
+	selector: 'app-coffee-list',
+	templateUrl: './coffee-list.component.html',
+	styleUrls: []
 })
-export class CoffeeListComponent implements OnInit {
-  constructor() {}
-  ngOnInit() {}
+export class CoffeeListComponent {
+	constructor() {}
 }

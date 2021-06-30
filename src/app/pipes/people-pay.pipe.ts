@@ -3,14 +3,12 @@ import { PeopleListResult } from '../interfaces/interfaces';
 import { CommonService } from '../services/common.service';
 
 @Pipe({
-  name: 'peoplePay'
+	name: 'peoplePay'
 })
 export class PeoplePayPipe implements PipeTransform {
-  
-  constructor(private common: CommonService) { }
+	constructor(private common: CommonService) {}
 
-  transform(id_person: number, people: PeopleListResult): string {
-    return this.common.urldecode( people['person_'+id_person].name );
-  }
-
+	transform(id_person: number, people: PeopleListResult): string {
+		return this.common.urldecode( people['person_'+id_person].name );
+	}
 }

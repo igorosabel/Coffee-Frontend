@@ -1,18 +1,18 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="back()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <span>{{ day.year }}-{{ day.month | formatNum }}-{{ day.day | formatNum }}</span>
+	<button mat-icon-button (click)="back()">
+		<mat-icon>arrow_back</mat-icon>
+	</button>
+	<span>{{ day.year }}-{{ day.month | formatNum }}-{{ day.day | formatNum }}</span>
 </mat-toolbar>
 
 <mat-card class="card-95">
-  <mat-nav-list>
-    <mat-list-item *ngFor="let event of selectedDay.list">
-      <a class="row" (click)="goToEvent(event.id)">
-        {{ event.people | peopleList:people }}
-        <span class="flex"></span>
-        <strong>{{ event.id_person | peoplePay:people }}</strong>
-      </a>
-    </mat-list-item>
-  </mat-nav-list>
+	<mat-nav-list>
+		<mat-list-item *ngFor="let event of selectedDay.list">
+			<a class="row" (click)="goToEvent(event.id)">
+				{{ event.people | peopleList:people }}
+				<span class="flex"></span>
+				<strong>{{ event.id_person | peoplePay:people }}</strong>
+			</a>
+		</mat-list-item>
+	</mat-nav-list>
 </mat-card>
