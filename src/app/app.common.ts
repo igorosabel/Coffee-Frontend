@@ -2,7 +2,6 @@
  * Páginas
  */
  import { CoffeeComponent }     from './pages/coffee/coffee.component';
- import { CoffeeListComponent } from './pages/coffee-list/coffee-list.component';
  import { DayComponent }        from './pages/day/day.component';
  import { PeopleComponent }     from './pages/people/people.component';
  import { AddPersonComponent }  from './pages/add-person/add-person.component';
@@ -12,13 +11,12 @@
 
 export const PAGES: any[] = [
 	CoffeeComponent,
-	CoffeeListComponent,
 	DayComponent,
-  PeopleComponent,
-  AddPersonComponent,
-  EditPersonComponent,
-  PersonComponent,
-  DayListComponent
+	PeopleComponent,
+	AddPersonComponent,
+	EditPersonComponent,
+	PersonComponent,
+	DayListComponent
 ];
 
 /*
@@ -32,7 +30,7 @@ import { AlertDialogComponent }   from './components/dialogs/alert-dialog/alert-
 export const COMPONENTS: any[] = [
 	CalendarComponent,
 	ColorsComponent,
-  ConfirmDialogComponent,
+	ConfirmDialogComponent,
 	AlertDialogComponent
 ];
 
@@ -48,12 +46,12 @@ import { PeoplePayPipe }         from './pipes/people-pay.pipe';
 
 export const PIPES: any[] = [
 	UrldecodePipe,
-  PercentageTotalPipe,
-  PercentageFridaysPipe,
-  FormatNumPipe,
-  PeopleListPipe,
-  PeopleListPipe,
-  PeoplePayPipe
+	PercentageTotalPipe,
+	PercentageFridaysPipe,
+	FormatNumPipe,
+	PeopleListPipe,
+	PeopleListPipe,
+	PeoplePayPipe
 ];
 
 /*

@@ -11,8 +11,8 @@ import { PAGES, COMPONENTS, PIPES, SERVICES, MATERIAL } from './app.common';
 
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent }   from './components/dialogs/alert-dialog/alert-dialog.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { ServiceWorkerModule }    from '@angular/service-worker';
+import { environment }            from '../environments/environment';
 
 @NgModule({
 	declarations: [
