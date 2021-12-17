@@ -15,26 +15,25 @@ import { ServiceWorkerModule }    from '@angular/service-worker';
 import { environment }            from '../environments/environment';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		...PAGES,
-		...COMPONENTS,
-		...PIPES
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		HttpClientModule,
-		FormsModule,
-		ColorPickerModule,
-		...MATERIAL,
-		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-	],
-	entryComponents: [ConfirmDialogComponent, AlertDialogComponent],
-	providers: [
-		...SERVICES
-	],
-	bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ...PAGES,
+        ...COMPONENTS,
+        ...PIPES
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        FormsModule,
+        ColorPickerModule,
+        ...MATERIAL,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ],
+    providers: [
+        ...SERVICES
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
